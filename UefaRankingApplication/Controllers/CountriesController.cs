@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
-using UefaRankingApplication.Domain.Models;
-using UefaRankingApplication.Presentation.Services;
+using UefaRankingApplication.DataAccess.Models;
+using UefaRankingApplication.BusinessLogic.Services;
 
-namespace UefaRankingApplication.Presentation.Controllers
+namespace UefaRankingApplication.UserInterface.Controllers
 {
     [ApiController]
     [Route("[controller]")]

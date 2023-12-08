@@ -320,17 +320,30 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "UefaRankingApplication.Domain/1.0.0": {
+      "UefaRankingApplication.BusinessLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "UefaRankingApplication.DataAccess": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/UefaRankingApplication.BusinessLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UefaRankingApplication.BusinessLogic.dll": {}
+        }
+      },
+      "UefaRankingApplication.DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "7.0.14"
         },
         "compile": {
-          "bin/placeholder/UefaRankingApplication.Domain.dll": {}
+          "bin/placeholder/UefaRankingApplication.DataAccess.dll": {}
         },
         "runtime": {
-          "bin/placeholder/UefaRankingApplication.Domain.dll": {}
+          "bin/placeholder/UefaRankingApplication.DataAccess.dll": {}
         }
       }
     }
@@ -1023,17 +1036,23 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "UefaRankingApplication.Domain/1.0.0": {
+    "UefaRankingApplication.BusinessLogic/1.0.0": {
       "type": "project",
-      "path": "../UefaRankingApplication.Datas/UefaRankingApplication.Domain.csproj",
-      "msbuildProject": "../UefaRankingApplication.Datas/UefaRankingApplication.Domain.csproj"
+      "path": "../UefaRankingApplication.Core/UefaRankingApplication.BusinessLogic.csproj",
+      "msbuildProject": "../UefaRankingApplication.Core/UefaRankingApplication.BusinessLogic.csproj"
+    },
+    "UefaRankingApplication.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../UefaRankingApplication.Datas/UefaRankingApplication.DataAccess.csproj",
+      "msbuildProject": "../UefaRankingApplication.Datas/UefaRankingApplication.DataAccess.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.EntityFrameworkCore.InMemory >= 7.0.14",
       "Swashbuckle.AspNetCore >= 6.5.0",
-      "UefaRankingApplication.Domain >= 1.0.0"
+      "UefaRankingApplication.BusinessLogic >= 1.0.0",
+      "UefaRankingApplication.DataAccess >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1043,9 +1062,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication\\UefaRankingApplication.Presentation.csproj",
-      "projectName": "UefaRankingApplication.Presentation",
-      "projectPath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication\\UefaRankingApplication.Presentation.csproj",
+      "projectUniqueName": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication\\UefaRankingApplication.UserInterface.csproj",
+      "projectName": "UefaRankingApplication.UserInterface",
+      "projectPath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication\\UefaRankingApplication.UserInterface.csproj",
       "packagesPath": "C:\\Users\\georg\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication\\obj\\",
       "projectStyle": "PackageReference",
@@ -1069,8 +1088,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Datas\\UefaRankingApplication.Domain.csproj": {
-              "projectPath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Datas\\UefaRankingApplication.Domain.csproj"
+            "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Core\\UefaRankingApplication.BusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Core\\UefaRankingApplication.BusinessLogic.csproj"
+            },
+            "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Datas\\UefaRankingApplication.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Datas\\UefaRankingApplication.DataAccess.csproj"
             }
           }
         }

@@ -1,0 +1,21 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/UefaRankingApplication.Datas/bin/Debug/net6.0
+/UefaRankingApplication/bin/Debug/net6.0
+/UefaRankingApplication/obj/Debug/net6.0/ref
+/UefaRankingApplication/obj/Debug/net6.0/staticwebassets
+/UefaRankingApplication.Datas/obj/project.assets.json
+/UefaRankingApplication.Datas/obj/project.nuget.cache
+/UefaRankingApplication.Datas/obj/UefaRankingApplication.DataAccess.csproj.nuget.dgspec.json
+/UefaRankingApplication.Datas/obj/UefaRankingApplication.DataAccess.csproj.nuget.g.props
+/UefaRankingApplication.Datas/obj/UefaRankingApplication.DataAccess.csproj.nuget.g.targets
+/UefaRankingApplication.Core/bin/Debug/net6.0
+/UefaRankingApplication.Core/obj/Debug/net6.0
+/UefaRankingApplication.Core/obj
+/UefaRankingApplication/obj/project.assets.json
+/UefaRankingApplication/obj/project.nuget.cache
+/UefaRankingApplication/obj/UefaRankingApplication.UserInterface.csproj.nuget.dgspec.json
+/UefaRankingApplication/obj/UefaRankingApplication.UserInterface.csproj.nuget.g.props
+/UefaRankingApplication/obj/UefaRankingApplication.UserInterface.csproj.nuget.g.targets

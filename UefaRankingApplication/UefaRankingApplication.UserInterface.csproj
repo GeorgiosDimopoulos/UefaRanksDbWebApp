@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UefaRankingApplication.Datas\UefaRankingApplication.Domain.csproj" />
+    <ProjectReference Include="..\UefaRankingApplication.Core\UefaRankingApplication.BusinessLogic.csproj" />
+    <ProjectReference Include="..\UefaRankingApplication.Datas\UefaRankingApplication.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

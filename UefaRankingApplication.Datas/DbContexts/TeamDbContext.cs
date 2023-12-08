@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UefaRankingApplication.Domain.Models;
+using UefaRankingApplication.DataAccess.Models;
 
-namespace UefaRankingApplication.Domain.DbContexts
+namespace UefaRankingApplication.DataAccess.DbContexts
 {
     public class TeamDbContext : DbContext
     {

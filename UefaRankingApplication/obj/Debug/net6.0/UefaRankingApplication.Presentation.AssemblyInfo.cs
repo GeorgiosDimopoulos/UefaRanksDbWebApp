@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UefaRankingApplication.Presentation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+530e8f495987d1ab2d45610a202673bc94444850")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("UefaRankingApplication.Presentation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UefaRankingApplication.Presentation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

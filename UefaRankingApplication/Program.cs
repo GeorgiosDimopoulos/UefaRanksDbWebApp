@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using UefaRankingApplication.Domain.DbContexts;
+using UefaRankingApplication.DataAccess.DbContexts;
 
-namespace UefaRankingApplication.Presentation
+namespace UefaRankingApplication.UserInterface
 {
     public class Program
     {

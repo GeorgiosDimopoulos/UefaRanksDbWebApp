@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0TPNDXs69Xw8PPNwsydvg6rgTt867ys7gWYUzSOzX3mleCVACu4IGYAOMgoy1ntBxWTf6H5Em8F+jxriUCfYcw==",
+  "dgSpecHash": "qrQujha/GGZsU96o0Vahky+zUVo06+5m6JFapR8BCQdFByQQOhf8CiA269vUlO2fM8yc9oSi4W2DQxmn/B7tfw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication\\UefaRankingApplication.Presentation.csproj",
+  "projectFilePath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication\\UefaRankingApplication.UserInterface.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\georg\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.14\\microsoft.entityframeworkcore.7.0.14.nupkg.sha512",
     "C:\\Users\\georg\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.14\\microsoft.entityframeworkcore.abstractions.7.0.14.nupkg.sha512",

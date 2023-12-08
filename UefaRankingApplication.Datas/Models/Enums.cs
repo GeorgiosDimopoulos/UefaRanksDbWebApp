@@ -1,4 +1,4 @@
-﻿namespace UefaRankingApplication.Domain.Models
+﻿namespace UefaRankingApplication.DataAccess.Models
 {
     enum TeamResultType
     {

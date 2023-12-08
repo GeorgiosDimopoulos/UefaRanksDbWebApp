@@ -568,9 +568,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Datas\\UefaRankingApplication.Domain.csproj",
-      "projectName": "UefaRankingApplication.Domain",
-      "projectPath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Datas\\UefaRankingApplication.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Datas\\UefaRankingApplication.DataAccess.csproj",
+      "projectName": "UefaRankingApplication.DataAccess",
+      "projectPath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Datas\\UefaRankingApplication.DataAccess.csproj",
       "packagesPath": "C:\\Users\\georg\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Datas\\obj\\",
       "projectStyle": "PackageReference",

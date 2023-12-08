@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using UefaRankingApplication.Domain.DbContexts;
-using UefaRankingApplication.Domain.Models;
+using UefaRankingApplication.DataAccess.DbContexts;
+using UefaRankingApplication.DataAccess.Models;
 
-namespace UefaRankingApplication.Presentation.Services
+namespace UefaRankingApplication.BusinessLogic.Services
 {
     public class CountriesService : ICountriesService
     {
