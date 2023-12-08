@@ -1,0 +1,15 @@
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\bin\Debug\net6.0\UefaRankingApplication.Services.deps.json
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\bin\Debug\net6.0\UefaRankingApplication.Services.dll
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\bin\Debug\net6.0\UefaRankingApplication.Services.pdb
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\bin\Debug\net6.0\UefaRankingApplication.Datas.dll
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\bin\Debug\net6.0\UefaRankingApplication.Datas.pdb
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\obj\Debug\net6.0\UefaRankingApplication.Services.csproj.AssemblyReference.cache
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\obj\Debug\net6.0\UefaRankingApplication.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\obj\Debug\net6.0\UefaRankingApplication.Services.AssemblyInfoInputs.cache
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\obj\Debug\net6.0\UefaRankingApplication.Services.AssemblyInfo.cs
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\obj\Debug\net6.0\UefaRankingApplication.Services.csproj.CoreCompileInputs.cache
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\obj\Debug\net6.0\UefaRankingApplication.Services.csproj.CopyComplete
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\obj\Debug\net6.0\UefaRankingApplication.Services.dll
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\obj\Debug\net6.0\refint\UefaRankingApplication.Services.dll
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\obj\Debug\net6.0\UefaRankingApplication.Services.pdb
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Data\obj\Debug\net6.0\ref\UefaRankingApplication.Services.dll

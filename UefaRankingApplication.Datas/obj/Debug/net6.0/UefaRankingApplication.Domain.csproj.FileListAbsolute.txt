@@ -1,0 +1,12 @@
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\bin\Debug\net6.0\UefaRankingApplication.Domain.deps.json
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\bin\Debug\net6.0\UefaRankingApplication.Domain.dll
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\bin\Debug\net6.0\UefaRankingApplication.Domain.pdb
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\UefaRankingApplication.Domain.csproj.AssemblyReference.cache
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\UefaRankingApplication.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\UefaRankingApplication.Domain.AssemblyInfoInputs.cache
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\UefaRankingApplication.Domain.AssemblyInfo.cs
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\UefaRankingApplication.Domain.csproj.CoreCompileInputs.cache
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\UefaRankingApplication.Domain.dll
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\refint\UefaRankingApplication.Domain.dll
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\UefaRankingApplication.Domain.pdb
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\ref\UefaRankingApplication.Domain.dll

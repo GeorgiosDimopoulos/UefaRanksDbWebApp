@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\UefaRankingApplication.API.props" />
+</Project>
