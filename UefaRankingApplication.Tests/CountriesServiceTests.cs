@@ -1,22 +1,19 @@
-﻿using Xunit;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace UefaRankingApplication.Tests
-{       
-    public class UnitTest
+{
+    public class CountriesServiceTests
     {
-        private CountriesService countriesService;
-
         [Fact]
         public void AddCountry_ShouldNoReturnsError()
         {
             // var stringCalculator = new StringCalculator();
             // var actual = stringCalculator.Add("0");
             // Assert.Equal(0, actual);
-        }
-
-        [Fact]
-        public void AddTeam_ShouldNoReturnsError()
-        {         
         }
     }
 }

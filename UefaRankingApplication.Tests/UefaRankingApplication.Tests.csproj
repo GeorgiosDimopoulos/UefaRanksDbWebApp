@@ -62,8 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControllerTest.cs" />
-    <Compile Include="UnitTest.cs" />
+    <Compile Include="ControllerTests.cs" />
+    <Compile Include="CountriesServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

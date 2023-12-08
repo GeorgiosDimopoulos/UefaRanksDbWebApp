@@ -43,3 +43,4 @@ C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication\obj\De
 C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication\obj\Debug\net6.0\UefaRankingApplication.Presentation.pdb
 C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication\obj\Debug\net6.0\UefaRankingApplication.Presentation.genruntimeconfig.cache
 C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication\obj\Debug\net6.0\ref\UefaRankingApplication.Presentation.dll
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication\obj\Debug\net6.0\UefaRankingApplication.Presentation.sourcelink.json

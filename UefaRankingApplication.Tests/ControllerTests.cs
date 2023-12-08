@@ -2,7 +2,7 @@
 
 namespace UefaRankingApplication.Tests
 {       
-    public class ControllerTest
+    public class ControllerTests
     {
         private CountriesService countriesService;
 

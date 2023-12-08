@@ -5,6 +5,10 @@ namespace UefaRankingApplication.Domain.DbContexts
 {
     public class TeamDbContext : DbContext
     {
+        public TeamDbContext()
+        {
+        }
+
         public TeamDbContext(DbContextOptions<TeamDbContext> options): base(options)
         {
         }

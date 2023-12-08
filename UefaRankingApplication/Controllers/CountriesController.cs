@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 using UefaRankingApplication.Domain.Models;
 using UefaRankingApplication.Presentation.Services;
 
@@ -10,13 +11,13 @@ namespace UefaRankingApplication.Presentation.Controllers
     public class CountriesController : ControllerBase
     {
         // private readonly TeamDbContext _context;
-        private readonly ILogger<CountriesController> _logger;        
-        private CountriesService countriesService;        
+        private readonly ILogger<CountriesController> _logger;
+        private CountriesService countriesService;
 
         public CountriesController(ILogger<CountriesController> logger) // TeamDbContext context
         {
             // _context = context;
-            _logger = logger;            
+            _logger = logger;
             countriesService = new CountriesService();
 
         }
@@ -24,31 +25,58 @@ namespace UefaRankingApplication.Presentation.Controllers
         [HttpGet("Countries")]
         public IEnumerable<string> GetAllCountries()
         {
-            // await _context.SaveChangesAsync();
-            _logger.LogInformation("Get All Countries Info");
             return countriesService.GetSampleCountries().Select(t => t.Name);
         }
 
         [HttpGet("Teams")]
         public IEnumerable<string> GetAllTeamsNames()
         {
-            // await _context.SaveChangesAsync();
-            _logger.LogInformation("Get All Teams Info");
             return countriesService.GetSampleTeams().Select(t => t.Name);
         }
 
         [HttpGet("CountryInfo")]
         public Country GetCountryInfoByName(string name)
         {
-            _logger.LogInformation($"Get {name} Info");
             return countriesService.GetCountries().First(c => c.Name.Equals(name));
         }
 
         [HttpGet("TeamInfo")]
         public Team GetTeamInfoByName(string name)
         {
-            _logger.LogInformation($"Get {name} Info");
             return countriesService.GetSampleTeams().First(t => t.Name.Equals(name));
+        }
+
+        [HttpPost("{team}")]
+        public async Task<ActionResult<Team>> PostTeam(string teamName)
+        {
+            if (await countriesService.AddTeam(teamName))
+            {                   
+                return CreatedAtAction(nameof(Team), new { Id = 1 }, teamName);
+            }     
+            
+            return BadRequest();
+        }
+
+        [HttpPut("TeamPoints")]
+        public async Task<ActionResult<Team>> AddPointsToTeam(string name, string points)
+        {            
+            if (await countriesService.UpdateTeam(name, int.Parse(points)))
+            {
+                return CreatedAtAction(nameof(Team), new { Id = 1 }, name);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpDelete("{team}")]
+        public async Task<ActionResult<Team>> DeleteTeam(string teamName)
+        {
+            if (await countriesService.DeleteTeam(teamName))
+            {
+                return CreatedAtAction(nameof(Team), new { Id = 1 }, teamName);
+            }            
+
+            return BadRequest();
         }
     }
 }

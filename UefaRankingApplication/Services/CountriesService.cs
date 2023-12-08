@@ -1,26 +1,31 @@
-﻿using UefaRankingApplication.Domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using UefaRankingApplication.Domain.DbContexts;
+using UefaRankingApplication.Domain.Models;
 
 namespace UefaRankingApplication.Presentation.Services
 {
     public class CountriesService : ICountriesService
     {
-        private readonly IEnumerable<Country> countries;
-        private readonly IEnumerable<Team> teams;
+        private readonly TeamDbContext _context;
+        private readonly IEnumerable<Country> _countries;
+        private readonly IEnumerable<Team> _teams;
 
         public CountriesService()
         {
-            teams = GetSampleTeams();
-            countries = GetSampleCountries();
+            _context = new TeamDbContext();
+            _teams = GetSampleTeams();
+            _countries = GetSampleCountries();
         }
 
         public IEnumerable<Country> GetCountries()
         {
-            return countries;
+            return _countries;
         }
 
         public IEnumerable<Team> GetTeams()
         {
-            return teams;
+            return _teams;
         }
 
         public IEnumerable<Team> GetSampleTeams()
@@ -31,14 +36,20 @@ namespace UefaRankingApplication.Presentation.Services
                 {
                      Id = 2,
                     Points = 1111,
-                    Country = "Germany",
+                    Country = new Country()
+                    {
+                        Name = "Germany"
+                    },
                     Name = "VfB",
                 },
                 new()
                 {
                     Id = 2,
                     Points = 1111,
-                    Country = "Greece",
+                    Country = new Country()
+                    {
+                        Name = "Greece"
+                    },
                     Name = "AEK",                    
                 },
             };
@@ -48,14 +59,14 @@ namespace UefaRankingApplication.Presentation.Services
         {
             return new List<Country>()
             {
-                new Country()
+                new()
                 {
                     Id = 2,
                     Name = "Germany",                                       
                     RankingPosition = 1,
                     TeamsNumber = 5
                 },
-                new Country()
+                new()
                 {
                     Id = 1,
                     Name = "Greece",
@@ -63,6 +74,70 @@ namespace UefaRankingApplication.Presentation.Services
                     TeamsNumber = 4
                 },
             };
+        }
+        
+        public async Task<bool> AddTeam(string teamName)
+        {
+            try
+            {
+                _context.Add(new Team()
+                {
+                    Name = teamName,
+                    Country = GetCountries().First(c => c.Name.Equals(teamName))
+                });
+
+                await _context.SaveChangesAsync();
+                return await Task.FromResult(true);
+
+            }
+            catch (Exception)
+            {
+                return await Task.FromResult(false);
+            }
+        }
+
+
+        public async Task<bool> DeleteTeam(string teamName)
+        {
+            try
+            {
+                var team = GetTeams().FirstOrDefault(t => t.Name.Equals(teamName));
+                _context.Remove(team);
+
+                await _context.SaveChangesAsync();
+                return await Task.FromResult(true);
+
+            }
+            catch (Exception)
+            {
+                return await Task.FromResult(false);
+            }
+        }
+
+        public async Task<bool> UpdateTeam(string name, int resultType)
+        {
+            try
+            {
+                // team.Points += int.Parse(points);
+                var team = GetTeams().First(t => t.Name.Equals(name));                
+                switch (resultType)
+                {
+                    case 1: // win: 2000 points
+                        break;
+                    case 2: // draw: 1000 points
+                        break;                    
+                    default: // loss: 0 points
+                        break;
+                }
+                
+                _context.Update(team);
+                await _context.SaveChangesAsync();
+                return await Task.FromResult(true);
+            }
+            catch (Exception)
+            {
+                return await Task.FromResult(false);
+            }
         }
     }
 }

@@ -10,3 +10,4 @@ C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\
 C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\refint\UefaRankingApplication.Domain.dll
 C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\UefaRankingApplication.Domain.pdb
 C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\ref\UefaRankingApplication.Domain.dll
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\UefaRankingApplication.Domain.sourcelink.json
