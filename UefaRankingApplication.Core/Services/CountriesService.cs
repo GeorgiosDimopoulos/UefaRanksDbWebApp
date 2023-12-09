@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using UefaRankingApplication.DataAccess.DbContexts;
+﻿using UefaRankingApplication.DataAccess.DbContexts;
 using UefaRankingApplication.DataAccess.Models;
 
 namespace UefaRankingApplication.BusinessLogic.Services
