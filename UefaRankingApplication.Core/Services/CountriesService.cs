@@ -139,5 +139,31 @@ namespace UefaRankingApplication.BusinessLogic.Services
                 return await Task.FromResult(false);
             }
         }
+
+        public async Task<bool> UpdateCountry(string name, int res)
+        {
+            try
+            {
+                // team.Points += int.Parse(points);
+                var country = GetCountries().First(t => t.Name.Equals(name));
+                switch (res)
+                {
+                    case 1: // win: 2000 points
+                        break;
+                    case 2: // draw: 1000 points
+                        break;
+                    default: // loss: 0 points
+                        break;
+                }
+
+                _context.Update(country);
+                await _context.SaveChangesAsync();
+                return await Task.FromResult(true);
+            }
+            catch (Exception)
+            {
+                return await Task.FromResult(false);
+            }
+        }
     }
 }

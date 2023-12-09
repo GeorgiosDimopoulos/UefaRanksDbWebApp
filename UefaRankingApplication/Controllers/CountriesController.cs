@@ -68,6 +68,17 @@ namespace UefaRankingApplication.UserInterface.Controllers
             return BadRequest();
         }
 
+        [HttpPut("CountryPoints")]
+        public async Task<ActionResult<Team>> AddPointsToCountry(string name, string points)
+        {
+            if (await countriesService.UpdateCountry(name, int.Parse(points)))
+            {
+                return CreatedAtAction(nameof(Team), new { Id = 1 }, name);
+            }
+
+            return BadRequest();
+        }
+
         [HttpDelete("{team}")]
         public async Task<ActionResult<Team>> DeleteTeam(string teamName)
         {
