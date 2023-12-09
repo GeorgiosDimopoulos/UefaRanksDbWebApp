@@ -73,3 +73,7 @@
 /.vs/UefaRankingApplication/FileContentIndex/cb352644-50d6-4051-b9ee-7a7944d2ff7f.vsidx
 /.vs/UefaRankingApplication/FileContentIndex/f48d2abf-851d-4202-b13d-9e0917412ac6.vsidx
 /.vs/UefaRankingApplication/FileContentIndex/fb5959d1-a7fc-4183-baac-ac627fe05291.vsidx
+UefaRankingApplication.Datas/obj/Debug/net6.0/UefaRankingApplication.DataAccess.AssemblyInfo.cs
+*.exe
+UefaRankingApplication.UnitTests/UefaRankingApplication.UnitTests.csproj
+UefaRankingApplication/obj/Debug/net6.0/refint/UefaRankingApplication.UserInterface.dll
