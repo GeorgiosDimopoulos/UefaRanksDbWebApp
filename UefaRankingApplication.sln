@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UefaRankingApplication.User
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UefaRankingApplication.DataAccess", "UefaRankingApplication.Datas\UefaRankingApplication.DataAccess.csproj", "{8924B6C5-A710-4888-9AEF-7FA0DB6C0A90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UefaRankingApplication.Tests", "UefaRankingApplication.Tests\UefaRankingApplication.Tests.csproj", "{7887FAF6-3003-4F25-9C36-FE8282B1247F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UefaRankingApplication.BusinessLogic", "UefaRankingApplication.Core\UefaRankingApplication.BusinessLogic.csproj", "{C693E5F2-2F16-48F7-9DA7-FB89E4C2C56A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UefaRankingApplication.BusinessLogic", "UefaRankingApplication.Core\UefaRankingApplication.BusinessLogic.csproj", "{C693E5F2-2F16-48F7-9DA7-FB89E4C2C56A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UefaRankingApplication.UnitTests", "UefaRankingApplication.UnitTests\UefaRankingApplication.UnitTests.csproj", "{8C698118-832E-4F85-A987-738E566A83A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{8924B6C5-A710-4888-9AEF-7FA0DB6C0A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8924B6C5-A710-4888-9AEF-7FA0DB6C0A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8924B6C5-A710-4888-9AEF-7FA0DB6C0A90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7887FAF6-3003-4F25-9C36-FE8282B1247F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7887FAF6-3003-4F25-9C36-FE8282B1247F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7887FAF6-3003-4F25-9C36-FE8282B1247F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7887FAF6-3003-4F25-9C36-FE8282B1247F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C693E5F2-2F16-48F7-9DA7-FB89E4C2C56A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C693E5F2-2F16-48F7-9DA7-FB89E4C2C56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C693E5F2-2F16-48F7-9DA7-FB89E4C2C56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C693E5F2-2F16-48F7-9DA7-FB89E4C2C56A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C698118-832E-4F85-A987-738E566A83A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C698118-832E-4F85-A987-738E566A83A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C698118-832E-4F85-A987-738E566A83A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C698118-832E-4F85-A987-738E566A83A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

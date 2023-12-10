@@ -22,6 +22,8 @@
 .vs/UefaRankingApplication/v17/.suo
 .vs/ProjectEvaluation/uefarankingapplication.metadata.v7.bin
 *.bin
+bin/
+obj/
 .vs/UefaRankingApplication/v17/.suo
 *.bin
 .vs/ProjectEvaluation/uefarankingapplication.metadata.v7.bin
@@ -77,3 +79,6 @@ UefaRankingApplication.Datas/obj/Debug/net6.0/UefaRankingApplication.DataAccess.
 *.exe
 UefaRankingApplication.UnitTests/UefaRankingApplication.UnitTests.csproj
 UefaRankingApplication/obj/Debug/net6.0/refint/UefaRankingApplication.UserInterface.dll
+*.json
+*.exe
+/.vs/UefaRankingApplication/FileContentIndex
