@@ -1,5 +1,6 @@
 ﻿using UefaRankingApplication.DataAccess.DbContexts;
 using UefaRankingApplication.DataAccess.Models;
+using UefaRankingApplication.DataAccess.SamplesData;
 
 namespace UefaRankingApplication.BusinessLogic.Services
 {
@@ -8,9 +9,11 @@ namespace UefaRankingApplication.BusinessLogic.Services
         private readonly TeamDbContext _context;
         private readonly IEnumerable<Country> _countries;
         private readonly IEnumerable<Team> _teams;
+        private readonly CountriesSample _countriesSample;
 
         public CountriesService()
         {
+            _countriesSample = new CountriesSample();
             _context = new TeamDbContext();
             _teams = GetSampleTeams();
             _countries = GetSampleCountries();
@@ -26,52 +29,14 @@ namespace UefaRankingApplication.BusinessLogic.Services
             return _teams;
         }
 
-        public IEnumerable<Team> GetSampleTeams()
+        private IEnumerable<Team> GetSampleTeams()
         {
-            return new List<Team>()
-            {
-                new() 
-                {
-                     Id = 2,
-                    Points = 1111,
-                    Country = new Country()
-                    {
-                        Name = "Germany"
-                    },
-                    Name = "VfB",
-                },
-                new()
-                {
-                    Id = 2,
-                    Points = 1111,
-                    Country = new Country()
-                    {
-                        Name = "Greece"
-                    },
-                    Name = "AEK",                    
-                },
-            };
+            return _countriesSample.GetSomeTeams();
         }
 
-        public IEnumerable<Country> GetSampleCountries()
+        private IEnumerable<Country> GetSampleCountries()
         {
-            return new List<Country>()
-            {
-                new()
-                {
-                    Id = 2,
-                    Name = "Germany",                                       
-                    RankingPosition = 1,
-                    TeamsNumber = 5
-                },
-                new()
-                {
-                    Id = 1,
-                    Name = "Greece",
-                    RankingPosition = 10,
-                    TeamsNumber = 4
-                },
-            };
+            return _countriesSample.GetSomeCountries();
         }
         
         public async Task<bool> AddTeam(string teamName)
@@ -112,56 +77,34 @@ namespace UefaRankingApplication.BusinessLogic.Services
             }
         }
 
-        public async Task<bool> UpdateTeam(string name, int resultType)
+        public async Task<bool> UpdateTeamAndCountryPoints(string name, string resultType)
         {
-            try
-            {
-                // team.Points += int.Parse(points);
-                var team = GetTeams().First(t => t.Name.Equals(name));                
-                switch (resultType)
-                {
-                    case 1: // win: 2000 points
-                        break;
-                    case 2: // draw: 1000 points
-                        break;                    
-                    default: // loss: 0 points
-                        break;
-                }
-                
-                _context.Update(team);
-                await _context.SaveChangesAsync();
-                return await Task.FromResult(true);
-            }
-            catch (Exception)
+            var team = GetTeams().First(t => t.Name.Equals(name));
+            var country = GetCountries().First(t => t.Name.Equals(team.Country.Name));
+
+            if (team is null || country is null)
             {
                 return await Task.FromResult(false);
             }
+
+            if (resultType.Equals("win") || int.Parse(resultType) == 3)
+            {
+                await UpdateTeamAndCountryPoints(team, 2000);
+            }
+            else if (resultType.Equals("draw") || int.Parse(resultType) == 1)                              
+            {
+                await UpdateTeamAndCountryPoints(team, 1000);
+            }
+
+            return await Task.FromResult(true);                            
         }
 
-        public async Task<bool> UpdateCountry(string name, int res)
+        private async Task UpdateTeamAndCountryPoints(Team team, int points)
         {
-            try
-            {
-                // team.Points += int.Parse(points);
-                var country = GetCountries().First(t => t.Name.Equals(name));
-                switch (res)
-                {
-                    case 1: // win: 2000 points
-                        break;
-                    case 2: // draw: 1000 points
-                        break;
-                    default: // loss: 0 points
-                        break;
-                }
-
-                _context.Update(country);
-                await _context.SaveChangesAsync();
-                return await Task.FromResult(true);
-            }
-            catch (Exception)
-            {
-                return await Task.FromResult(false);
-            }
+            _context.AddPointsToTeamAndCountry(team, points);
+            
+            // _context.Update(team);
+            await _context.SaveChangesAsync();
         }
     }
 }

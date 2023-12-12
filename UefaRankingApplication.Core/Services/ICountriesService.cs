@@ -9,14 +9,8 @@ namespace UefaRankingApplication.BusinessLogic.Services
 
         Task<bool> AddTeam(string name);
 
-        Task<bool> UpdateTeam(string name,int num);
-
-        IEnumerable<Country> GetSampleCountries();
-
-        IEnumerable<Team> GetSampleTeams();
-
-        Task<bool> UpdateCountry(string name, int num);
-
+        Task<bool> UpdateTeamAndCountryPoints(string name, string result);                        
+        
         Task<bool> DeleteTeam(string name);
 
     }
