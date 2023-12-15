@@ -1,23 +1,28 @@
-﻿using UefaRankingApplication.DataAccess.DbContexts;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
+using System.Data.SqlClient;
+using UefaRankingApplication.DataAccess.DbContexts;
 using UefaRankingApplication.DataAccess.Models;
 using UefaRankingApplication.DataAccess.SamplesData;
+using static Dapper.SqlMapper;
 
 namespace UefaRankingApplication.BusinessLogic.Services
 {
     public class CountriesService : ICountriesService
-    {
-        private readonly TeamDbContext _context;
+    {           
         private readonly IEnumerable<Country> _countries;
         private readonly IEnumerable<Team> _teams;
         private readonly CountriesSample _countriesSample;
+        private TeamDbContext _context;
 
         public CountriesService()
         {
-            _countriesSample = new CountriesSample();
-            _context = new TeamDbContext();
+            _countriesSample = new CountriesSample();            
             _teams = GetSampleTeams();
             _countries = GetSampleCountries();
-        }
+            /SetDatabaseContexts();
+            _context = new TeamDbContext();
+        }               
 
         public IEnumerable<Country> GetCountries()
         {
@@ -27,6 +32,38 @@ namespace UefaRankingApplication.BusinessLogic.Services
         public IEnumerable<Team> GetTeams()
         {
             return _teams;
+        }
+
+        private void SetDatabaseContexts()
+        {
+            var connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\georg\\OneDrive\\Έγγραφα\\UefaDatabase.mdf;Integrated Security=True;Connect Timeout=30";
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                if (connection is null) 
+                {
+                    return;
+                }
+                _context = new TeamDbContext();
+                var countries = connection.Query<Country>("SELECT * FROM Country");
+                var teams = connection.Query<Team>("SELECT * FROM Team");
+                if (teams is null || countries is null)
+                {
+                    return;
+                }
+
+                foreach (var team in teams)
+                {
+                    _context.TeamsList.Add(team);
+                }
+
+                foreach (var country in countries)
+                {
+                    _context.CountriesList.Add(country);
+                }
+
+                _context.SaveChanges();
+            }            
         }
 
         private IEnumerable<Team> GetSampleTeams()
