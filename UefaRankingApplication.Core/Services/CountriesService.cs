@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
 using UefaRankingApplication.DataAccess.DbContexts;
 using UefaRankingApplication.DataAccess.Models;
@@ -19,8 +18,8 @@ namespace UefaRankingApplication.BusinessLogic.Services
         {
             _countriesSample = new CountriesSample();            
             _teams = GetSampleTeams();
-            _countries = GetSampleCountries();
-            /SetDatabaseContexts();
+            _countries = GetSampleCountries();                       
+            SetDatabaseContexts();
             _context = new TeamDbContext();
         }               
 
