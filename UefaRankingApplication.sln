@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UefaRankingApplication.Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UefaRankingApplication.BusinessLogic", "UefaRankingApplication.Core\UefaRankingApplication.BusinessLogic.csproj", "{C693E5F2-2F16-48F7-9DA7-FB89E4C2C56A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UefaRankingApplication.UnitTests", "UefaRankingApplication.UnitTests\UefaRankingApplication.UnitTests.csproj", "{8C698118-832E-4F85-A987-738E566A83A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UefaRankingApplication.UnitTests", "UefaRankingApplication.UnitTests\UefaRankingApplication.UnitTests.csproj", "{8C698118-832E-4F85-A987-738E566A83A4}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UefaRankingApplication.EntitiesDatabase", "EntitiesDatabase\UefaRankingApplication.EntitiesDatabase.sqlproj", "{DC63400D-ADEE-4C69-8CD4-C5BE0F8EDFF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,12 @@ Global
 		{8C698118-832E-4F85-A987-738E566A83A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C698118-832E-4F85-A987-738E566A83A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C698118-832E-4F85-A987-738E566A83A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC63400D-ADEE-4C69-8CD4-C5BE0F8EDFF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC63400D-ADEE-4C69-8CD4-C5BE0F8EDFF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC63400D-ADEE-4C69-8CD4-C5BE0F8EDFF6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DC63400D-ADEE-4C69-8CD4-C5BE0F8EDFF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC63400D-ADEE-4C69-8CD4-C5BE0F8EDFF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC63400D-ADEE-4C69-8CD4-C5BE0F8EDFF6}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

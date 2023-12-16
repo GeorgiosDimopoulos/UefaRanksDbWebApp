@@ -14,14 +14,14 @@ namespace UefaRankingApplication.UserInterface.Controllers
         public CountriesController(ILogger<CountriesController> logger)
         {
             _logger = logger;
-            _countriesService = new CountriesService();
+            _countriesService = new CountriesService(_logger);
         }
 
         [HttpGet("AllCountriesInfo")]
         public IEnumerable<Country> GetAllCountries()
         {
             _logger.LogInformation("Getting Countries Information");
-            return _countriesService.GetCountries(); // .Select(t => t);
+            return _countriesService.GetCountries();
         }
 
         [HttpGet("JustCountriesNames")]
