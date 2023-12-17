@@ -1,88 +1,90 @@
 ﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
 using UefaRankingApplication.DataAccess.DbContexts;
 using UefaRankingApplication.DataAccess.Models;
-using UefaRankingApplication.DataAccess.SamplesData;
-using static Dapper.SqlMapper;
 
 namespace UefaRankingApplication.BusinessLogic.Services
 {
     public class CountriesService : ICountriesService
     {           
-        private readonly IEnumerable<Country> _countries;
-        private readonly IEnumerable<Team> _teams;
-        private readonly CountriesSample _countriesSample;
-        private TeamDbContext _context;
+        public IEnumerable<Country>? Countries { get; set; }        
+        public IEnumerable<Team>? Teams { get; set; }
 
-        public CountriesService()
+        private ILogger _logger;
+        private TeamDbContext? _context;
+
+        public CountriesService(ILogger logger)
         {
-            _countriesSample = new CountriesSample();            
-            _teams = GetSampleTeams();
-            _countries = GetSampleCountries();                       
-            SetDatabaseContexts();
-            _context = new TeamDbContext();
+            _logger = logger;
+            SetDatabaseContexts();            
         }               
-
-        public IEnumerable<Country> GetCountries()
-        {
-            return _countries;
-        }
-
-        public IEnumerable<Team> GetTeams()
-        {
-            return _teams;
-        }
 
         private void SetDatabaseContexts()
         {
             var connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\georg\\OneDrive\\Έγγραφα\\UefaDatabase.mdf;Integrated Security=True;Connect Timeout=30";
             using (var connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                if (connection is null) 
-                {
-                    return;
-                }
-                _context = new TeamDbContext();
-                var countries = connection.Query<Country>("SELECT * FROM Country");
-                var teams = connection.Query<Team>("SELECT * FROM Team");
-                if (teams is null || countries is null)
+                if (connection is null)
                 {
                     return;
                 }
 
+                connection.Open();                
+                _context = new TeamDbContext();
+                _context.ConnectionString = connectionString;                
+
+                var countries = connection.Query<Country>("SELECT * FROM Country");
+                var teams = connection.Query<Team>("SELECT * FROM Team");
+
+                if (teams is null || countries is null)
+                {
+                    _logger.LogInformation("No teams or countries available in DB");
+                    return;
+                }                                               
+
                 foreach (var team in teams)
                 {
-                    _context.TeamsList.Add(team);
+                    if (team.Id is 0)
+                    {
+                        _logger.LogInformation("No null primary key is valid");
+                        return;
+                    }
+
+                    _context.Teams.Add(team);
                 }
 
                 foreach (var country in countries)
                 {
-                    _context.CountriesList.Add(country);
-                }
+                    if (country.Id is 0)
+                    {
+                        _logger.LogInformation("No null primary key is valid");
+                        return;
+                    }
+                    _context.Countries.Add(country);
+               }
 
+                // _context.Add(existingCountries);
+                // _context.Add(existingTeams);
+                _context.Update(_context.Teams);
+                _context.Update(_context.Countries);                             
                 _context.SaveChanges();
             }            
         }
 
-        private IEnumerable<Team> GetSampleTeams()
-        {
-            return _countriesSample.GetSomeTeams();
-        }
-
-        private IEnumerable<Country> GetSampleCountries()
-        {
-            return _countriesSample.GetSomeCountries();
-        }
-        
         public async Task<bool> AddTeam(string teamName)
         {
             try
             {
+                if(Countries is null) 
+                {
+                    return false;
+                }
+
                 _context.Add(new Team()
                 {
                     Name = teamName,
-                    Country = GetCountries().First(c => c.Name.Equals(teamName))
+                    Country = Countries.First(c => c.Name.Equals(teamName))
                 });
 
                 await _context.SaveChangesAsync();
@@ -100,9 +102,9 @@ namespace UefaRankingApplication.BusinessLogic.Services
         {
             try
             {
-                var team = GetTeams().FirstOrDefault(t => t.Name.Equals(teamName));
+                var team = Teams?.First(t => t.Name.Equals(teamName));
                 _context.Remove(team);
-
+                _logger.LogInformation($"Team with name {team.Name} removed from DB");
                 await _context.SaveChangesAsync();
                 return await Task.FromResult(true);
 
@@ -115,8 +117,13 @@ namespace UefaRankingApplication.BusinessLogic.Services
 
         public async Task<bool> UpdateTeamAndCountryPoints(string name, string resultType)
         {
-            var team = GetTeams().First(t => t.Name.Equals(name));
-            var country = GetCountries().First(t => t.Name.Equals(team.Country.Name));
+            if(Teams is null || Countries is null) 
+            {
+                return false;
+            }
+
+            var team = Teams.First(t => t.Name.Equals(name));
+            var country = Countries.First(t => t.Name.Equals(team.Country.Name));
 
             if (team is null || country is null)
             {
@@ -135,12 +142,21 @@ namespace UefaRankingApplication.BusinessLogic.Services
             return await Task.FromResult(true);                            
         }
 
+        public IEnumerable<Country>? GetCountries()
+        {
+            return this.Countries ?? null;
+        }
+
+        public IEnumerable<Team>? GetTeams()
+        {
+            return this.Teams ?? null;
+        }
+
         private async Task UpdateTeamAndCountryPoints(Team team, int points)
         {
-            _context.AddPointsToTeamAndCountry(team, points);
-            
-            // _context.Update(team);
+            _context.AddPointsToTeamAndCountry(team, points);            
+            _context.Update(team);
             await _context.SaveChangesAsync();
-        }
+        }        
     }
 }

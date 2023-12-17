@@ -5,14 +5,16 @@ namespace UefaRankingApplication.DataAccess.DbContexts
 {
     public class TeamDbContext : DbContext
     {
-        public DbSet<Team> TeamsList { get; set; }
-        public TeamDbContext? DbCurContext { get; set; }
-        public DbSet<Country> CountriesList { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Country> Countries { get; set; }
         public string? ConnectionString { get; set; }                
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
+            modelBuilder.Entity<Country>().ToTable("Country"); // , "ref"
+            modelBuilder.Entity<Team>().ToTable("Team");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -25,10 +27,10 @@ namespace UefaRankingApplication.DataAccess.DbContexts
 
         public bool AddPointsToTeamAndCountry(Team team, int points)
         {
-            var country = CountriesList.First(c => c.Name.Equals(team.Country.Name));
-            var countryPoints = points / country.TeamsNumber;
-            TeamsList.First(t => t.Name.Equals(team.Name)).GroupPoints += points; 
-            CountriesList.First(c => c.Name.Equals(team.Name)).CountryPoints += countryPoints;
+            var country = Countries.First(c => c.Name.Equals(team.Country.Name));
+            var countryPoints = points / country.AllTeamsNumber;
+            Teams.First(t => t.Name.Equals(team.Name)).GroupPoints += points; 
+            Countries.First(c => c.Name.Equals(team.Name)).CountryPoints += countryPoints;
             SaveChanges();
 
             return true;

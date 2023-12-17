@@ -1,12 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UefaRankingApplication.DataAccess.Models
 {
     [Table(name: "Team")]
     public class Team
     {
+        [Key]
         [Column(name: "Id")]
-        public int Id { get; set; }
+        public int Id { get; set; } // TeamId
 
         [Column(name: "RankingPoints")]
         public int RankingPoints { get; set; }
@@ -14,15 +16,17 @@ namespace UefaRankingApplication.DataAccess.Models
         [Column(name: "GroupPoints")]
         public int? GroupPoints { get; set; }
 
-        [Column(name: "TeamName")]
+        [Column(name: "Name")]
         public string Name { get; set; }
         
+        [Column(name: "IsPlaying")]
         public bool IsPlaying { get; set; }
         
         public TeamCup? PlayingCup { get; set; }
-        
-        public Country Country { get; set; }
 
+        [ForeignKey("CountryId")] // nameof(CountryId)
+        public Country Country { get; set; }                
+        
         // public char[]? Results { get; set; } // TeamResultType_Char
         public Team()
         {   
@@ -31,19 +35,6 @@ namespace UefaRankingApplication.DataAccess.Models
             Name = string.Empty;
             IsPlaying = false;
             Country = new Country();
-        }
-
-        public Team(int id, int rankingPoints, int groupPoints, string name, Country country, TeamCup cup, bool isPlaying) // char[] results
-        {
-            Id = id;
-            IsPlaying = isPlaying;
-            RankingPoints = rankingPoints;
-            GroupPoints = groupPoints;
-            Name = name;
-            PlayingCup = cup;
-            Country = country;
-            
-            // Results = results;
         }
     }
 
