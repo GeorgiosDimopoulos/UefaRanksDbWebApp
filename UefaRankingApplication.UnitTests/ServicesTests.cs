@@ -1,10 +1,8 @@
 using AutoFixture;
-using Castle.Core.Resource;
 using Microsoft.Extensions.Logging;
 using Moq;
 using UefaRankingApplication.BusinessLogic.Services;
 using UefaRankingApplication.DataAccess.Models;
-using UefaRankingApplication.UserInterface.Controllers;
 
 namespace UefaRankingApplication.UnitTests
 {

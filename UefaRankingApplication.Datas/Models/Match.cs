@@ -1,17 +1,28 @@
-﻿namespace UefaRankingApplication.DataAccess.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace UefaRankingApplication.DataAccess.Models
 {
     public class Match
-    {           
+    {
+        [Key]
+        [Column(name: "Id")]
         public int Id { get; set; }
-        public string Team { get; set; }
-        public string TeamOpponent { get; set; }
-        public string Score { get; set; }
+
+        [Column(name: "Team")]
+        public Team Team { get; set; }
+
+        [Column(name: "OpponentTeam")]
+        public Team OpponentTeam { get; set; }
+
+        [Column(name: "Result")]
+        public string Result { get; set; }
 
         public Match()
         {
-            Team = string.Empty;
-            TeamOpponent = string.Empty;
-            Score = string.Empty;
+            Team = new();
+            OpponentTeam = new();
+            Result = string.Empty;
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UefaRankingApplication.DataAccess.Models;
+﻿using UefaRankingApplication.DataAccess.Models;
 
 namespace UefaRankingApplication.DataAccess.SamplesData
 {
@@ -48,7 +43,7 @@ namespace UefaRankingApplication.DataAccess.SamplesData
             };    
         }
 
-        public List<Country> GetSomeCountries()
+        public IEnumerable<Country> GetSomeCountries()
         {
             return new List<Country>()
             {
@@ -57,7 +52,8 @@ namespace UefaRankingApplication.DataAccess.SamplesData
                     Id = 2,
                     Name = "Germany",
                     RankingPosition = 1,
-                    TeamsNumber = 5,                    
+                    ActiveTeamsNumber = 5,
+                    AllTeamsNumber = 6,
                     CountryPoints = 23123
                 },
                 new()
@@ -65,7 +61,8 @@ namespace UefaRankingApplication.DataAccess.SamplesData
                     Id = 1,
                     Name = "Greece",
                     RankingPosition = 10,
-                    TeamsNumber = 4,
+                    ActiveTeamsNumber= 2,
+                    AllTeamsNumber = 5,
                     CountryPoints = 12122
                 },
             };

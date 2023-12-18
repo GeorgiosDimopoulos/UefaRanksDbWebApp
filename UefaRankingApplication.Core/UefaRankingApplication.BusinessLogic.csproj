@@ -14,4 +14,8 @@
     <ProjectReference Include="..\UefaRankingApplication.Datas\UefaRankingApplication.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

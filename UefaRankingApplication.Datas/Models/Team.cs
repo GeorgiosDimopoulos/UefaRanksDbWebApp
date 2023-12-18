@@ -8,7 +8,7 @@ namespace UefaRankingApplication.DataAccess.Models
     {
         [Key]
         [Column(name: "Id")]
-        public int Id { get; set; } // TeamId
+        public int Id { get; set; }
 
         [Column(name: "RankingPoints")]
         public int RankingPoints { get; set; }
@@ -24,7 +24,7 @@ namespace UefaRankingApplication.DataAccess.Models
         
         public TeamCup? PlayingCup { get; set; }
 
-        [ForeignKey("CountryId")] // nameof(CountryId)
+        [ForeignKey("CountryId")]
         public Country Country { get; set; }                
         
         // public char[]? Results { get; set; } // TeamResultType_Char
