@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UefaRankingApplication.DataAccess.Models
 {
+    [Table(name: "Country")]
     public class Country
     {
         [Key]

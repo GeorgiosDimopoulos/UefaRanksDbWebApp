@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UefaRankingApplication.DataAccess.Models
 {
+    [Table(name: "Match")]
     public class Match
     {
         [Key]
