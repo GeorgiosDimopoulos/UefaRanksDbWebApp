@@ -34,8 +34,10 @@ namespace UefaRankingApplication.BusinessLogic.Services
                 _context = new TeamDbContext();
                 _context.ConnectionString = connectionString;                
 
+                // ToDo: change it to ORM command, instead of SQL query
                 var countries = connection.Query<Country>("SELECT * FROM Country");
                 var teams = connection.Query<Team>("SELECT * FROM Team");
+                var matches  = connection.Query<Team>("SELECT * FROM Match");
 
                 if (teams is null || countries is null)
                 {
@@ -47,18 +49,29 @@ namespace UefaRankingApplication.BusinessLogic.Services
                 {
                     if (team.Id is 0)
                     {
-                        _logger.LogInformation("No null primary key is valid");
+                        _logger.LogInformation("No null primary key in team is valid");
                         return;
                     }
 
                     _context.Teams.Add(team);
                 }
 
+                foreach (var match in matches)
+                {
+                    if (match.Id is 0)
+                    {
+                        _logger.LogInformation("No null primary key in match is valid");
+                        return;
+                    }
+
+                    _context.Teams.Add(match);
+                }
+
                 foreach (var country in countries)
                 {
                     if (country.Id is 0)
                     {
-                        _logger.LogInformation("No null primary key is valid");
+                        _logger.LogInformation("No null primary key in country is valid");
                         return;
                     }
                     _context.Countries.Add(country);
@@ -67,6 +80,7 @@ namespace UefaRankingApplication.BusinessLogic.Services
                 // _context.Add(existingCountries);
                 // _context.Add(existingTeams);
                 _context.Update(_context.Teams);
+                _context.Update(_context.Matches);
                 _context.Update(_context.Countries);                             
                 _context.SaveChanges();
             }            
