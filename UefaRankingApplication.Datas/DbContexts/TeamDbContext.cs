@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using UefaRankingApplication.DataAccess.Models;
 
 namespace UefaRankingApplication.DataAccess.DbContexts
@@ -15,8 +14,25 @@ namespace UefaRankingApplication.DataAccess.DbContexts
         {
             base.OnModelCreating(modelBuilder);
             
-            modelBuilder.Entity<Country>().ToTable("Country"); // , "ref"
-            modelBuilder.Entity<Team>().ToTable("Team");
+            modelBuilder.Entity<Country>().HasKey(c => c.Id);
+            modelBuilder.Entity<Country>().Property(c => c.RankingPosition).IsRequired();            
+            modelBuilder.Entity<Country>().Property(c => c.AllTeamsNumber).IsRequired();           
+            modelBuilder.Entity<Country>().Property(c => c.CountryPoints).IsRequired();
+            modelBuilder.Entity<Country>().Property(c => c.Name).HasMaxLength(20).IsRequired();
+
+            modelBuilder.Entity<Team>().HasKey(t => t.Id);
+            modelBuilder.Entity<Team>().Property(t => t.Name).HasMaxLength(20).IsRequired();
+            modelBuilder.Entity<Team>().Property(t => t.RankingPoints).IsRequired();
+            // modelBuilder.Entity<Team>().Property(t => t.Country).IsRequired();
+
+            // modelBuilder.Entity<Team>().HasMany(t => t.Matches).WithOne(m => m.Team).HasForeignKey(m => m.Team_Id);
+            modelBuilder.Entity<Team>().HasOne(t => t.Country).WithMany(c => c.Teams).HasForeignKey(t => t.Country_Id);
+
+            modelBuilder.Entity<Match>().HasKey(m => m.Id);
+            modelBuilder.Entity<Match>().Property(m => m.Result).IsRequired().HasMaxLength(5);
+            modelBuilder.Entity<Match>().Property(m => m.Team).IsRequired();
+            modelBuilder.Entity<Match>().Property(m => m.OpponentTeam).IsRequired();
+            // modelBuilder.Entity<Match>().HasOne(m => m.Team); // .WithMany(t => t.mat).HasForeignKey(m => m.Team_Id);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,11 +49,11 @@ namespace UefaRankingApplication.DataAccess.DbContexts
 
         public bool AddPointsToTeamAndCountry(Team team, int points)
         {
-            var country = Countries.First(c => c.Name.Equals(team.Country.Name));
-            var countryPoints = points / country.AllTeamsNumber;
-            Teams.First(t => t.Name.Equals(team.Name)).GroupPoints += points; 
-            Countries.First(c => c.Name.Equals(team.Name)).CountryPoints += countryPoints;
-            SaveChanges();
+            //var country = Countries.First(c => c.Name.Equals(team.Country.Name));
+            //var countryPoints = points / country.AllTeamsNumber;
+            //Teams.First(t => t.Name.Equals(team.Name)).GroupPoints += points; 
+            //Countries.First(c => c.Name.Equals(team.Name)).CountryPoints += countryPoints;
+            //SaveChanges();
 
             return true;
         }                       
