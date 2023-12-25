@@ -1,5 +1,7 @@
 ﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Data.SqlClient;
 using UefaRankingApplication.DataAccess.DbContexts;
 using UefaRankingApplication.DataAccess.Models;
@@ -12,18 +14,18 @@ namespace UefaRankingApplication.BusinessLogic.Services
         public IEnumerable<Team>? Teams { get; set; }
 
         private ILogger _logger;
-        private TeamDbContext? _context;
+        private ApplicationDbContext? _context;
 
         public CountriesService(ILogger logger)
         {
             _logger = logger;
-            SetDatabaseContexts();            
-        }               
+            SetDatabaseContexts();
+        }
 
         private void SetDatabaseContexts()
         {
-            var connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\georg\\OneDrive\\Έγγραφα\\UefaDatabase.mdf;Integrated Security=True;Connect Timeout=30";
-            using (var connection = new SqlConnection(connectionString))
+            _context = new ApplicationDbContext();
+            using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 if (connection is null)
                 {
@@ -31,8 +33,9 @@ namespace UefaRankingApplication.BusinessLogic.Services
                 }
 
                 connection.Open();                
-                _context = new TeamDbContext();
-                _context.ConnectionString = connectionString;                
+                
+                //_context = new TeamDbContext();
+                var t = _context.Teams;
 
                 // ToDo: change it to ORM command, instead of SQL query
                 var countries = connection.Query<Country>("SELECT * FROM Country");
@@ -77,11 +80,9 @@ namespace UefaRankingApplication.BusinessLogic.Services
                     _context.Countries.Add(country);
                }
 
-                // _context.Add(existingCountries);
-                // _context.Add(existingTeams);
-                _context.Update(_context.Teams);
-                _context.Update(_context.Matches);
-                _context.Update(_context.Countries);                             
+                // _context.Update(_context.Teams);
+                // _context.Update(_context.Matches);
+                // _context.Update(_context.Countries);                             
                 _context.SaveChanges();
             }            
         }
@@ -95,10 +96,10 @@ namespace UefaRankingApplication.BusinessLogic.Services
                     return false;
                 }
 
-                _context.Add(new Team()
+                _context.Add(new Team
                 {
                     Name = teamName,
-                    Country = Countries.First(c => c.Name.Equals(teamName))
+                    // Country = Countries.First(c => c.Name.Equals(teamName))
                 });
 
                 await _context.SaveChangesAsync();
@@ -137,12 +138,12 @@ namespace UefaRankingApplication.BusinessLogic.Services
             }
 
             var team = Teams.First(t => t.Name.Equals(name));
-            var country = Countries.First(t => t.Name.Equals(team.Country.Name));
+            // var country = Countries.First(t => t.Name.Equals(team.Country.Name));
 
-            if (team is null || country is null)
-            {
-                return await Task.FromResult(false);
-            }
+            //if (team is null || country is null)
+            //{
+            //    return await Task.FromResult(false);
+            //}
 
             if (resultType.Equals("win") || int.Parse(resultType) == 3)
             {

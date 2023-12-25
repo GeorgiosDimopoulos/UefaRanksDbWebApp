@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UefaRankingApplication.DataAccess.Models
 {
     [Table(name: "Country")]
     public class Country
     {
-        [Key]
+        // [Key]
         public int Id { get; set; }
 
         [Column(name: "Name")]
@@ -24,6 +23,9 @@ namespace UefaRankingApplication.DataAccess.Models
         [Column(name: "AllTeamsNumber")]
         public int AllTeamsNumber { get; set; }
 
+        // ToDo: add it as new Column to the Database Table accordingly
+        public List<Team> Teams { get; set; }
+
         public Country()
         {
             ActiveTeamsNumber = 0;
@@ -31,6 +33,7 @@ namespace UefaRankingApplication.DataAccess.Models
             RankingPosition = 0;
             CountryPoints = 0;
             Id = 0;
+            Teams = new List<Team>();
             Name = string.Empty;
         }
     }

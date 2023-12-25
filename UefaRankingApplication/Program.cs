@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using UefaRankingApplication.DataAccess.DbContexts;
+using UefaRankingApplication.UserInterface.HealthChecks;
 
 namespace UefaRankingApplication.UserInterface
 {
@@ -15,9 +16,13 @@ namespace UefaRankingApplication.UserInterface
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen();                        
 
             var app = builder.Build();
+
+            // ToDo: implement later Health Checks properly
+            // builder.Services.AddHealthChecks().AddCheck<SampleHealthCheck>("Sample");
+            // app.MapHealthChecks("/healthz");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -35,8 +40,8 @@ namespace UefaRankingApplication.UserInterface
             app.Run();
 
             var connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\georg\\OneDrive\\Έγγραφα\\UefaDatabase.mdf;Integrated Security=True;Connect Timeout=30";
-            builder.Services.AddDbContext<TeamDbContext>(opt => opt.UseSqlServer(connectionString));
-            builder.Services.AddDbContext<TeamDbContext>(opt => opt.UseInMemoryDatabase("TeamsList")); // .opt.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test"));
+            builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("TeamsList")); // .opt.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test"));
         }
     }
 }

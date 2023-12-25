@@ -8,22 +8,31 @@ namespace UefaRankingApplication.DataAccess.Models
     {
         [Key]
         [Column(name: "Id")]
-        public int Id { get; set; }
-
-        [Column(name: "Team")]
-        public Team Team { get; set; }
-
-        [Column(name: "OpponentTeam")]
-        public Team OpponentTeam { get; set; }
+        public int Id { get; set; }                        
 
         [Column(name: "Result")]
-        public string Result { get; set; }
+        public Result Result { get; set; } // string
 
-        public Match()
-        {
-            Team = new();
-            OpponentTeam = new();
-            Result = string.Empty;
-        }
+        // [ForeignKey]
+        // [Column(name: "Team_Id")]
+        public int Team_Id { get; set; }
+
+        [NotMapped]
+        public Team Team { get; set; }
+
+        // [Column(name: "OpponentTeam_Id")]
+        // public int OpponentTeam_Id { get; set; }
+
+        [NotMapped]
+        public Team OpponentTeam { get; set; }
+        
+        public List<Team> Teams { get; set; }
+    }
+
+    public enum Result
+    {
+        Win,
+        Draw,
+        Loss
     }
 }

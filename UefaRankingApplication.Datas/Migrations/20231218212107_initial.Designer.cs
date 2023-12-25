@@ -11,7 +11,7 @@ using UefaRankingApplication.DataAccess.DbContexts;
 
 namespace UefaRankingApplication.DataAccess.Migrations
 {
-    [DbContext(typeof(TeamDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20231218212107_initial")]
     partial class initial
     {

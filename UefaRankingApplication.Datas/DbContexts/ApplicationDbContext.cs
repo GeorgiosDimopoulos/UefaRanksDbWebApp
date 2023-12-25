@@ -3,7 +3,7 @@ using UefaRankingApplication.DataAccess.Models;
 
 namespace UefaRankingApplication.DataAccess.DbContexts
 {
-    public class TeamDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Team> Teams { get; set; }
         public DbSet<Country> Countries { get; set; }
@@ -22,26 +22,22 @@ namespace UefaRankingApplication.DataAccess.DbContexts
 
             modelBuilder.Entity<Team>().HasKey(t => t.Id);
             modelBuilder.Entity<Team>().Property(t => t.Name).HasMaxLength(20).IsRequired();
-            modelBuilder.Entity<Team>().Property(t => t.RankingPoints).IsRequired();
-            // modelBuilder.Entity<Team>().Property(t => t.Country).IsRequired();
 
-            // modelBuilder.Entity<Team>().HasMany(t => t.Matches).WithOne(m => m.Team).HasForeignKey(m => m.Team_Id);
-            modelBuilder.Entity<Team>().HasOne(t => t.Country).WithMany(c => c.Teams).HasForeignKey(t => t.Country_Id);
-
+            // modelBuilder.Entity<Match>().Property(m => m.Result).HasConversion<string>();
             modelBuilder.Entity<Match>().HasKey(m => m.Id);
-            modelBuilder.Entity<Match>().Property(m => m.Result).IsRequired().HasMaxLength(5);
-            modelBuilder.Entity<Match>().Property(m => m.Team).IsRequired();
-            modelBuilder.Entity<Match>().Property(m => m.OpponentTeam).IsRequired();
-            // modelBuilder.Entity<Match>().HasOne(m => m.Team); // .WithMany(t => t.mat).HasForeignKey(m => m.Team_Id);
+            modelBuilder.Entity<Match>().Property(m => m.Result).IsRequired().HasMaxLength(5);            
+
+            // modelBuilder.Entity<Match>().HasOne(m => m.Team).WithMany(t => t.Matches).HasForeignKey(m => m.Team_Id);            
+            modelBuilder.Entity<Team>().HasOne(t => t.Country).WithMany(c => c.Teams).HasForeignKey(t => t.Country_Id);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
+        {            
             if (!optionsBuilder.IsConfigured)
             {
                 // select the type of the Server we want to use, via DbContextOptionsBuilder tool
                 // define with options what is the type of database we want via the connection string from the DB                
-                var serverName = "(LocalDb)\\MSSQLLocalDB";
+                var serverName = "(LocalDb)\\MSSQLLocalDB";                
                 ConnectionString = $"Server={serverName};Database=CodingUefa;TrustServerCertificate=True;Trusted_Connection=true";                
                 optionsBuilder.UseSqlServer(ConnectionString);
             }

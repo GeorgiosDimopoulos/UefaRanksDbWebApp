@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UefaRankingApplication.DataAccess.Models
 {
-    [Table(name: "Team")]
+    // [Table(name: "Team")]
     public class Team
     {
-        [Key]
+        // [Key]
         [Column(name: "Id")]
         public int Id { get; set; }
 
@@ -18,23 +18,28 @@ namespace UefaRankingApplication.DataAccess.Models
 
         [Column(name: "Name")]
         public string Name { get; set; }
-        
+
         [Column(name: "IsPlaying")]
         public bool IsPlaying { get; set; }
-        
+
+        [NotMapped]
         public TeamCup? PlayingCup { get; set; }
 
-        [ForeignKey("CountryId")]
-        public Country Country { get; set; }                
-        
-        // public char[]? Results { get; set; } // TeamResultType_Char
+        // [ForeignKey("CountryId")]
+        public int Country_Id { get; set; }
+
+        public Country Country { get; set; }
+
+        public List<Match> Matches { get; set; }
+
         public Team()
         {   
             RankingPoints = 0;
             Id = 0;
             Name = string.Empty;
-            IsPlaying = false;
+            IsPlaying = false;            
             Country = new Country();
+            Matches = new List<Match>();
         }
     }
 
