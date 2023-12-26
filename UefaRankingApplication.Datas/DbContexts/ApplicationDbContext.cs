@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using UefaRankingApplication.DataAccess.Models;
 
 namespace UefaRankingApplication.DataAccess.DbContexts
@@ -39,7 +40,8 @@ namespace UefaRankingApplication.DataAccess.DbContexts
                 // define with options what is the type of database we want via the connection string from the DB                
                 var serverName = "(LocalDb)\\MSSQLLocalDB";                
                 ConnectionString = $"Server={serverName};Database=CodingUefa;TrustServerCertificate=True;Trusted_Connection=true";                
-                optionsBuilder.UseSqlServer(ConnectionString);
+                optionsBuilder.UseSqlServer(ConnectionString)                                    
+                    .LogTo(Console.WriteLine, new [] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);                
             }
         }
 
