@@ -1422,6 +1422,19 @@
             "rid": "win"
           }
         }
+      },
+      "UefaRankingApplication.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14"
+        },
+        "compile": {
+          "bin/placeholder/UefaRankingApplication.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UefaRankingApplication.Data.dll": {}
+        }
       }
     }
   },
@@ -4431,6 +4444,11 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "UefaRankingApplication.Data/1.0.0": {
+      "type": "project",
+      "path": "../UefaRankingApplication.Core/UefaRankingApplication.Data.csproj",
+      "msbuildProject": "../UefaRankingApplication.Core/UefaRankingApplication.Data.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4442,7 +4460,8 @@
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.14",
       "RabbitMQ.Client >= 6.8.1",
       "System.Data.SqlClient >= 4.8.5",
-      "System.Linq >= 4.3.0"
+      "System.Linq >= 4.3.0",
+      "UefaRankingApplication.Data >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4477,7 +4496,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Core\\UefaRankingApplication.Data.csproj": {
+              "projectPath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Core\\UefaRankingApplication.Data.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

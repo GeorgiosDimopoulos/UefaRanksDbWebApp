@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using FluentMigrator.Runner.Generators;
 using System.Data;
-using UefaRankingApplication.DataAccess.Models;
+using UefaRankingApplication.Data.Models;
 
 namespace UefaRankingApplication.DataAccess.Mappers
 {

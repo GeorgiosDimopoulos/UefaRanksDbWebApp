@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using UefaRankingApplication.DataAccess.DbContexts;
-using UefaRankingApplication.UserInterface.HealthChecks;
 
-namespace UefaRankingApplication.UserInterface
+namespace UefaRankingApplication.Swagger
 {
     public class Program
     {
@@ -16,13 +14,22 @@ namespace UefaRankingApplication.UserInterface
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();                        
+            builder.Services.AddSwaggerGen();
+
+            // configure our dbContext domain in the web project, the connection string is placed in the appsettings.json (not need to set it here, but we can)
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            // builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("TeamsList"));
+            // builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("CountriesList"));
 
             var app = builder.Build();
 
             // ToDo: implement later Health Checks properly
             // builder.Services.AddHealthChecks().AddCheck<SampleHealthCheck>("Sample");
-            // app.MapHealthChecks("/healthz");
+            // app.MapHealthChecks("/healthy");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -32,16 +39,9 @@ namespace UefaRankingApplication.UserInterface
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
             app.MapControllers();
-
-            app.Run();
-
-            var connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\georg\\OneDrive\\Έγγραφα\\UefaDatabase.mdf;Integrated Security=True;Connect Timeout=30";
-            builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(connectionString));
-            builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("TeamsList")); // .opt.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test"));
+            app.Run();            
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using UefaRankingApplication.DataAccess.Models;
+using UefaRankingApplication.Data.Models;
 
 namespace UefaRankingApplication.DataAccess.DbContexts
 {
@@ -9,7 +9,12 @@ namespace UefaRankingApplication.DataAccess.DbContexts
         public DbSet<Team> Teams { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Country> Matches { get; set; }
-        public string? ConnectionString { get; set; }                
+        public string? ConnectionString { get; set; }
+
+        // ensure ConnectionString is configured here too and everything related to Entity Framework Core, like the DbSets above
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> optionsBuilder): base(optionsBuilder)
+        {                                          
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,28 +37,14 @@ namespace UefaRankingApplication.DataAccess.DbContexts
             modelBuilder.Entity<Team>().HasOne(t => t.Country).WithMany(c => c.Teams).HasForeignKey(t => t.Country_Id);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {            
-            if (!optionsBuilder.IsConfigured)
-            {
-                // select the type of the Server we want to use, via DbContextOptionsBuilder tool
-                // define with options what is the type of database we want via the connection string from the DB                
-                var serverName = "(LocalDb)\\MSSQLLocalDB";                
-                ConnectionString = $"Server={serverName};Database=CodingUefa;TrustServerCertificate=True;Trusted_Connection=true";                
-                optionsBuilder.UseSqlServer(ConnectionString)                                    
-                    .LogTo(Console.WriteLine, new [] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);                
-            }
-        }
-
-        public bool AddPointsToTeamAndCountry(Team team, int points)
-        {
-            //var country = Countries.First(c => c.Name.Equals(team.Country.Name));
-            //var countryPoints = points / country.AllTeamsNumber;
-            //Teams.First(t => t.Name.Equals(team.Name)).GroupPoints += points; 
-            //Countries.First(c => c.Name.Equals(team.Name)).CountryPoints += countryPoints;
-            //SaveChanges();
-
-            return true;
-        }                       
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        // select the type of the Server we want to use, via DbContextOptionsBuilder tool and define with options what is the type of database we want via connection string
+        //        ConnectionString = $"Server=(LocalDb)\\MSSQLLocalDB;Database=CodingUefa;TrustServerCertificate=True;Trusted_Connection=True;";
+        //        optionsBuilder.UseSqlServer(ConnectionString).LogTo(Console.WriteLine, new [] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);
+        //    }
+        // }
     }
 }

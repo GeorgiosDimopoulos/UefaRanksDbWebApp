@@ -1,122 +1,80 @@
 using Microsoft.AspNetCore.Mvc;
-using UefaRankingApplication.DataAccess.Models;
-using UefaRankingApplication.BusinessLogic.Services;
+using UefaRankingApplication.Data.Models;
+using UefaRankingApplication.DataAccess.DbContexts;
 
-namespace UefaRankingApplication.UserInterface.Controllers
+namespace UefaRankingApplication.Swagger.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class CountriesController : ControllerBase
     {
         private readonly ILogger<CountriesController> _logger;
-        private readonly ICountriesService _countriesService;
+        
+        // private readonly CountriesService _countriesService;
+        private readonly ApplicationDbContext _db;
 
-        public CountriesController(ILogger<CountriesController> logger)
+        public CountriesController(ILogger<CountriesController> logger, ApplicationDbContext applicationDbContext) // CountriesService countriesService
         {
             _logger = logger;
-            _countriesService = new CountriesService(_logger);
+            _db = applicationDbContext;
+            
+            // _countriesService = countriesService;
         }
 
         [HttpGet("AllCountriesInfo")]
         public IEnumerable<Country> GetAllCountries()
         {
             _logger.LogInformation("Getting Countries Information");
-            return _countriesService.GetCountries();
+
+            // return _countriesService.GetCountries().ToList();
+            return _db.Countries.ToList();
         }
 
-        [HttpGet("JustCountriesNames")]
+        [HttpGet("CountriesNames")]
         public IEnumerable<string> GetAllCountriesNames()
         {
             _logger.LogInformation("Getting Countries Names");
-            return _countriesService.GetCountries().Select(t => t.Name);
-        }
 
-        [HttpGet("GetAllActiveTeams")]
-        public IEnumerable<Team> GetAllTeamsNames()
-        {
-            _logger.LogInformation("Getting all the active playing Teams Information");
-            return _countriesService.GetTeams().Where(t => t.IsPlaying); // Select(t => t).
-        }                
-
-        [HttpGet("GetTeamsByCup")]
-        public IEnumerable<Team> GetTeamsByCup(string cup)
-        {
-            _logger.LogInformation($"Getting all Teams Information by {cup} cup!");
-            return _countriesService.GetTeams().Where(t => t.PlayingCup.Equals(cup));
-        }               
-
-        [HttpGet("GetTeamsByCountry")]
-        public IEnumerable<string> GetTeamsByCountry(string countryName)
-        {
-            _logger.LogInformation("Getting Teams by Country Information");
-            return _countriesService.GetTeams().Where(t => t.Country.Name.Equals(countryName)).Select(t => t.Name);
-        }
-
-        [HttpGet("GetActiveTeamsByCup")]
-        public IEnumerable<Team> GetActiveTeamsByCup(string cup)
-        {
-            _logger.LogInformation("Getting all the active playing Teams Information");
-            return _countriesService.GetTeams().Where(t => t.IsPlaying && t.PlayingCup.Equals(cup));
+            // return _countriesService.GetCountries().Select(t => t.Name).ToList();
+            return _db.Countries.Select(t => t.Name);            
         }
 
         [HttpGet("CountryInfo")]
         public Country GetCountryInfoByName(string name)
         {
             _logger.LogInformation("Getting Country Info by given name");
-            return _countriesService.GetCountries().First(c => c.Name.Equals(name));
+
+            // return _countriesService.GetCountries().First(c => c.Name.Equals(name));
+            return _db.Countries.First(c => c.Name.Equals(name));            
         }
 
-        [HttpGet("TeamInfo")]
-        public Team GetTeamInfoByName(string name)
+        // [HttpPut("UpdateCountryInfo")]
+        // public Country UpdateCountryInfo(string name)
+        // {
+        //    _logger.LogInformation("Getting Country Info by given name for updating");
+
+        //    return _countriesService.GetCountries().First(c => c.Name.Equals(name));
+        // }
+
+        [HttpDelete("RemoveCountryById")]
+        public async Task<ActionResult<Country>> RemoveCountryById(string id)
         {
-            _logger.LogInformation("Getting Team Info and Results by given name");
+            var country = _db.Countries.FirstOrDefault(c => c.Id == int.Parse(id));
+            _db.Countries.Remove(country);
+            _db.SaveChangesAsync();
 
-            // var teamResults = _countriesService.GetTeams().First(t => t.Name.Equals(name)).Results;
-            return _countriesService.GetTeams().First(t => t.Name.Equals(name));
+            return country;
         }
 
-        [HttpPost("AddTeam")]
-        public async Task<ActionResult<Team>> PostTeam(string teamName)
+        [HttpDelete("RemoveCountryByName")]
+        public async Task<ActionResult<Country>> RemoveCountryByName(string countryName)
         {
-            if (await _countriesService.AddTeam(teamName))
-            {                   
-                return CreatedAtAction(nameof(Team), new { Id = 1 }, teamName);
-            }     
-            
-            return BadRequest();
-        }
+            // await _countriesService.DeleteCountry(countryName)
+            var country = _db.Countries.FirstOrDefault(c => c.Name.Equals(countryName));
+            _db.Countries.Remove(country);
+            _db.SaveChangesAsync();
 
-        [HttpPut("AddPointsToTeamAndCountry")]
-        public async Task<ActionResult<Team>> AddPointsToTeam(string name, string matchPoints)
-        {            
-            if (await _countriesService.UpdateTeamAndCountryPoints(name, matchPoints))
-            {
-                return CreatedAtAction(nameof(Team), new { Id = 1 }, name);
-            }
-
-            return BadRequest();
-        }
-
-        //[HttpPut("FixPointsOfResultToTeamAndCountry")]
-        //public async Task<ActionResult<Team>> FixPointsOfResult(string name, string match, string newMatchPoints)
-        //{
-        //    if (await _countriesService.UpdateTeamAndCountryPoints(name, match, newMatchPoints))
-        //    {
-        //        return CreatedAtAction(nameof(Team), new { Id = 1 }, name);
-        //    }
-
-        //    return BadRequest();
-        //}
-
-        [HttpDelete("Removeteam")]
-        public async Task<ActionResult<Team>> DeleteTeam(string teamName)
-        {
-            if (await _countriesService.DeleteTeam(teamName))
-            {
-                return CreatedAtAction(nameof(Team), new { Id = 1 }, teamName);
-            }            
-
-            return BadRequest();
+            return country;            
         }
     }
 }

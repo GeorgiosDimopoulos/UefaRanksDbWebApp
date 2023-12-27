@@ -13,3 +13,6 @@ C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\
 C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\ref\UefaRankingApplication.DataAccess.dll
 C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\bin\Debug\net6.0\UefaRankingApplication.DataAccess.runtimeconfig.json
 C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\UefaRankingApplication.DataAccess.genruntimeconfig.cache
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\bin\Debug\net6.0\UefaRankingApplication.Data.dll
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\bin\Debug\net6.0\UefaRankingApplication.Data.pdb
+C:\Users\georg\source\repos\UefaRankingApplication\UefaRankingApplication.Datas\obj\Debug\net6.0\UefaRankingApplication.DataAccess.csproj.CopyComplete

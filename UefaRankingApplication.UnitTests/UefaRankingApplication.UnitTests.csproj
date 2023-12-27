@@ -26,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UefaRankingApplication.Core\UefaRankingApplication.BusinessLogic.csproj" />
-    <ProjectReference Include="..\UefaRankingApplication\UefaRankingApplication.UserInterface.csproj" />
+    <ProjectReference Include="..\UefaRankingApplication.Core\UefaRankingApplication.Data.csproj" />
+    <ProjectReference Include="..\UefaRankingApplication\UefaRankingApplication.Swagger.csproj" />
   </ItemGroup>
 
 </Project>

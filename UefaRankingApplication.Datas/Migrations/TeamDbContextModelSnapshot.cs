@@ -37,7 +37,7 @@ namespace UefaRankingApplication.DataAccess.Migrations
                     b.ToTable("MatchTeam");
                 });
 
-            modelBuilder.Entity("UefaRankingApplication.DataAccess.Models.Country", b =>
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,7 +72,7 @@ namespace UefaRankingApplication.DataAccess.Migrations
                     b.ToTable("Country");
                 });
 
-            modelBuilder.Entity("UefaRankingApplication.DataAccess.Models.Match", b =>
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.Match", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,7 +94,7 @@ namespace UefaRankingApplication.DataAccess.Migrations
                     b.ToTable("Match");
                 });
 
-            modelBuilder.Entity("UefaRankingApplication.DataAccess.Models.Team", b =>
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.Team", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -133,22 +133,22 @@ namespace UefaRankingApplication.DataAccess.Migrations
 
             modelBuilder.Entity("MatchTeam", b =>
                 {
-                    b.HasOne("UefaRankingApplication.DataAccess.Models.Match", null)
+                    b.HasOne("UefaRankingApplication.Data.Models.Match", null)
                         .WithMany()
                         .HasForeignKey("MatchesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UefaRankingApplication.DataAccess.Models.Team", null)
+                    b.HasOne("UefaRankingApplication.Data.Models.Team", null)
                         .WithMany()
                         .HasForeignKey("TeamsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("UefaRankingApplication.DataAccess.Models.Team", b =>
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.Team", b =>
                 {
-                    b.HasOne("UefaRankingApplication.DataAccess.Models.Country", "Country")
+                    b.HasOne("UefaRankingApplication.Data.Models.Country", "Country")
                         .WithMany("Teams")
                         .HasForeignKey("Country_Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -157,7 +157,7 @@ namespace UefaRankingApplication.DataAccess.Migrations
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("UefaRankingApplication.DataAccess.Models.Country", b =>
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.Country", b =>
                 {
                     b.Navigation("Teams");
                 });

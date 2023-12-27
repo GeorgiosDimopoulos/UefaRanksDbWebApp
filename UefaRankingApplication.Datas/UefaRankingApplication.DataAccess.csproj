@@ -20,4 +20,8 @@
     <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UefaRankingApplication.Core\UefaRankingApplication.Data.csproj" />
+  </ItemGroup>
+
 </Project>
