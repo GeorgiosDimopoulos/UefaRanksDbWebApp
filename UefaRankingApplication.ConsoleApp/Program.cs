@@ -1,7 +1,4 @@
-﻿using UefaRankingApplication.DataAccess.DbContexts;
-using UefaRankingApplication.Data.Models;
-
-Console.WriteLine("1.Check all available countries");
+﻿Console.WriteLine("1.Check all available countries");
 Console.WriteLine("2. Check all available teams");
 Console.WriteLine("3. Add a new country in DB");
 Console.WriteLine("4. Add a new team in DB");

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using UefaRankingApplication.Data.Models;
 using UefaRankingApplication.DataAccess.DbContexts;
 
-namespace UefaRankingApplication.Swagger.Controllers
+namespace UefaRankingApplication.WebSwagger.Controllers
 {
     public class TeamsController : Controller
     {

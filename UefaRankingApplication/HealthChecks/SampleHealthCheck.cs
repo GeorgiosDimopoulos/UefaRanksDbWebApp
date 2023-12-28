@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace UefaRankingApplication.Swagger.HealthChecks
+namespace UefaRankingApplication.WebSwagger.HealthChecks
 {
     public class SampleHealthCheck : IHealthCheck
     {

@@ -1,32 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using UefaRankingApplication.Data.Models;
 using UefaRankingApplication.DataAccess.DbContexts;
-using UefaRankingApplication.UI.Models;
 
-namespace UefaRankingApplication.UI.Controllers
+namespace UefaRankingApplication.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        // private readonly ICountriesService _countriesService;
+        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ApplicationDbContext applicationDbContext) // ICountriesService countriesService
+        public HomeController(ILogger<HomeController> logger)
         {
-            _db = applicationDbContext;
-            // _countriesService = countriesService;
+            _logger = logger;
         }
 
         public IActionResult Index()
         {
-            List<Team> teams = _db.Teams.ToList();
-            return View(teams);
-        }
-
-        public IActionResult CountriesIndex()
-        {
-            List<Country> countries = _db.Countries.ToList();
-            return View(countries);
+            return View();
         }
 
         public IActionResult Privacy()
@@ -34,10 +23,10 @@ namespace UefaRankingApplication.UI.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }

@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "g8eqQHr245wGxoWWPulwRiEUly9iGY7oIMVfceDGAsk=",
-  "Source": "UefaRankingApplication.Swagger",
-  "BasePath": "_content/UefaRankingApplication.Swagger",
+  "Hash": "hKaQVMPBsyNm4+Fdynj0rwai7FKtrqQzHcEkPCLKxE8=",
+  "Source": "UefaRankingApplication.WebSwagger",
+  "BasePath": "_content/UefaRankingApplication.WebSwagger",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

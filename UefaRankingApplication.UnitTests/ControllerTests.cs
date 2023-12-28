@@ -1,7 +1,7 @@
 ﻿using AutoFixture;
 using Microsoft.Extensions.Logging;
 using Moq;
-using UefaRankingApplication.Swagger.Controllers;
+using UefaRankingApplication.WebSwagger.Controllers;
 
 namespace UefaRankingApplication.UnitTests
 {
