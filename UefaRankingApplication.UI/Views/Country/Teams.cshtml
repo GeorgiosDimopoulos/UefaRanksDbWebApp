@@ -1,17 +1,22 @@
-﻿@model IEnumerable<UefaRankingApplication.Data.Models.Team>
+﻿@model IEnumerable<UefaRankingApplication.Data.Models.Country>
 
 <br />
 <br />
 <div class="border p-4 bg-white">
     <div class="row">
         <div class="col-9">
-            <h2 class="text-info"> Teams List</h2>
+            <h2 class="text-info"> Countries List</h2>
         </div>
 
         <div class="col-3 text-right">
-            <a asp-action="Upsert" class="btn btn-info form-control"> Create New Team</a>
-        </div> 
+            <a asp-action="Teams" class="btn btn-info form-control"> See Country Teams</a>
+        </div>
     </div>
+    @* <div class="row">
+        <div class="col-3 text-right">
+            <a asp-action="CreateCountry" class="btn btn-success form-control"> Add Country </a>
+        </div>
+    </div> *@
     <br />
     <div>
         @if (Model.Count() > 0)
@@ -19,7 +24,7 @@
             <table class="table table-striped border">
                 <tr class="table-secondary">
                     <th>
-                        Team Name
+                        Country Name
                     </th>
                     <th></th>
                 </tr>
@@ -34,10 +39,6 @@
                                 Edit
                             </a>
 
-                            <a class="btn btn-primary text-white" asp-action="Matches" asp-route-Id="@item.Id">
-                                Matches
-                            </a>
-
                             <a class="btn btn-danger text-white" asp-action="Delete" asp-route-Id="@item.Id">
                                 Delete
                             </a>
@@ -48,7 +49,7 @@
         }
         else
         {
-            <p>No team exists...</p>
+            <p>No country exists...</p>
         }
     </div>
 </div>

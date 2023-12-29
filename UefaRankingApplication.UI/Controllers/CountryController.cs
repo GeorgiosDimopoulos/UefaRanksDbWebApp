@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using UefaRankingApplication.Data.Models;
 using UefaRankingApplication.DataAccess.DbContexts;
 
@@ -21,9 +22,9 @@ namespace MvcWebExample_Web.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            Country c = new();            
-            if(id == null || id == 0) 
-            {                   
+            Country c = new();
+            if (id == null || id == 0)
+            {
                 return View(c);
             }
 
@@ -43,21 +44,33 @@ namespace MvcWebExample_Web.Controllers
             if (ModelState.IsValid)
             {
                 if (country.Id == 0)
-                {                                          
-                    // create action
+                {
                     await _db.Countries.AddAsync(country);
                 }
                 else
                 {
-                    // update action                    
                     _db.Countries.Update(country);
                 }
 
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            
+
             return View(country);
+        }
+
+        public IActionResult Teams(int? cId)
+        {
+            Country c = new();
+            
+            c = _db.Countries.FirstOrDefault(c => c.Id == cId);
+
+            if (c == null)
+            {
+                return NotFound();
+            }
+                         
+            return View(c.Teams);
         }
 
         public async Task<IActionResult> Delete(int cId)

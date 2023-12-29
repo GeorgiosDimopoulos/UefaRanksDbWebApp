@@ -4,12 +4,12 @@ using UefaRankingApplication.DataAccess.DbContexts;
 
 namespace MvcWebExample_Web.Controllers
 {
-    public class TeamController : Controller
+    public class MatchController : Controller
     {
         private readonly ApplicationDbContext _db;
-        private readonly ILogger<TeamController> _logger;
+        private readonly ILogger<MatchController> _logger;
 
-        public TeamController(ILogger<TeamController> logger, ApplicationDbContext applicationDbContext)
+        public MatchController(ILogger<MatchController> logger, ApplicationDbContext applicationDbContext)
         {
             _db = applicationDbContext;
             _logger = logger;
@@ -17,19 +17,19 @@ namespace MvcWebExample_Web.Controllers
 
         public IActionResult Index()
         {
-            List<Team> teams = _db.Teams.ToList();
-            return View(teams);
+            List<Match> matches = _db.Matches.ToList();
+            return View(matches);
         }
 
         public IActionResult Upsert(int? id)
         {
-            Team t = new();            
+            Match t = new();            
             if(id == null || id == 0) 
             {                   
                 return View(t);
             }
 
-            t = _db.Teams.FirstOrDefault(c => c.Id == id);
+            t = _db.Matches.FirstOrDefault(c => c.Id == id);
             if (t is null)
             {
                 return NotFound();
@@ -40,54 +40,54 @@ namespace MvcWebExample_Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Upsert(Team team)
+        public async Task<IActionResult> Upsert(Match m)
         {
             if (ModelState.IsValid)
             {
-                if (team.Id == 0)
+                if (m.Id == 0)
                 {                                          
                     // create action
-                    await _db.Teams.AddAsync(team);
+                    await _db.Matches.AddAsync(m);
                 }
                 else
                 {
                     // update action                    
-                    _db.Teams.Update(team);
+                    _db.Matches.Update(m);
                 }
 
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             
-            return View(team);
+            return View(m);
         }
 
-        public async Task<IActionResult> Delete(int teamId)
+        public async Task<IActionResult> Delete(int mId)
         {
-            Team team = new();
-            team = _db.Teams.FirstOrDefault(c => c.Id == teamId);
+            Match m = new();
+            m = _db.Matches.FirstOrDefault(c => c.Id == mId);
 
-            if (team == null)
+            if (m == null)
             {
                 return NotFound();
             }
 
-            _db.Teams.Remove(team);
+            _db.Matches.Remove(m);
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult CreateMultiple() 
         {
-            var teams = new List<Team>();
+            var matches = new List<Match>();
             for (int i = 0; i < 2; i++)
             {
-                teams.Add(new Team() 
+                matches.Add(new Match() 
                 {
-                    Name = Guid.NewGuid().ToString(),                    
+                     // Guid.NewGuid().ToString(),                    
                 });
 
-                _db.Teams.AddRange(teams);
+                _db.Matches.AddRange(matches);
                 _db.SaveChanges();
             }
 
@@ -96,8 +96,8 @@ namespace MvcWebExample_Web.Controllers
 
         public IActionResult RemoveMultiple()
         {
-            var teamWithLastId = _db.Teams.OrderByDescending(u => u.Id).Take(1).ToList();
-            _db.Teams.RemoveRange(teamWithLastId);
+            var matchWithLastId = _db.Matches.OrderByDescending(u => u.Id).Take(1).ToList();
+            _db.Matches.RemoveRange(matchWithLastId);
             _db.SaveChanges();
 
             return RedirectToAction("Index");
