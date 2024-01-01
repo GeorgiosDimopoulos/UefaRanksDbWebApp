@@ -3,9 +3,13 @@ using UefaRankingApplication.Data.Models;
 
 namespace UefaRankingApplication.Data.ViewModels
 {
-    public class MatchViewModel
+    public class CountryTeamsViewModel
     {
-        public Match Match { get; set; }
+        public int Id { get; set; }
+
+        public Country Country { get; set; }
+
+        public Team Team { get; set; }
 
         public IEnumerable<SelectListItem> TeamsList { get; set; }
     }

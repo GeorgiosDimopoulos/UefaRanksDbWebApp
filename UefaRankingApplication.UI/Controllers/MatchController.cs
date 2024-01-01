@@ -65,6 +65,11 @@ namespace MvcWebExample_Web.Controllers
         public async Task<IActionResult> Delete(int mId)
         {
             Match m = new();
+
+            // foreach (var match in _db.Matches)
+            // {
+            //    _db.Entry(match).Reference(m => m.Team).Load();
+            // }            
             m = _db.Matches.FirstOrDefault(c => c.Id == mId);
 
             if (m == null)
