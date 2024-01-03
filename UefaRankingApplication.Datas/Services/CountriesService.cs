@@ -38,8 +38,7 @@ namespace UefaRankingApplication.DataAccess.Services
                 // var matches  = connection.Query<Team>("SELECT * FROM Match");
                 var teams = _context.Teams;
                 var countries = _context.Countries;
-                var matches = _context.Matches;
-
+                
                 if (teams is null || countries is null)
                 {
                     _logger.LogInformation("No teams or countries available in DB");
@@ -55,17 +54,6 @@ namespace UefaRankingApplication.DataAccess.Services
                     }
 
                     // _context.Teams.Add(team);
-                }
-
-                foreach (var match in matches)
-                {
-                    if (match.Id is 0)
-                    {
-                        _logger.LogInformation("No null primary key in match is valid");
-                        return;
-                    }
-
-                    _context.Matches.Add(match);
                 }
 
                 foreach (var country in countries)

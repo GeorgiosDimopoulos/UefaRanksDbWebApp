@@ -31,15 +31,8 @@ namespace UefaRankingApplication.Data.Models
 
         public List<Match> Matches { get; set; }
 
-        public Team()
-        {   
-            RankingPoints = 0;
-            Id = 0;
-            Name = string.Empty;
-            IsPlaying = false;            
-            Country = new Country();
-            Matches = new List<Match>();
-        }
+        // public List<TeamMatchesMap> TeamMatchesMap { get; set; }
+        //public List<CountryTeamMap> CountryTeamsMapList { get; set; }
     }
 
     public enum TeamCup

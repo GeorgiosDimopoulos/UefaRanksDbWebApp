@@ -17,15 +17,15 @@ namespace UefaRankingApplication.Data.Models
         // [Column(name: "Team_Id")]
         public int Team_Id { get; set; }
 
-        [NotMapped]
-        public Team Team { get; set; }
-
         // [Column(name: "OpponentTeam_Id")]
         // public int OpponentTeam_Id { get; set; }
 
+        //[NotMapped]
+        //[NotMapped]
+        //public Team MyTeam { get; set; }
+        //public Team OpponentTeam { get; set; }
+
         [NotMapped]
-        public Team OpponentTeam { get; set; }
-        
         public List<Team> Teams { get; set; }
     }
 
