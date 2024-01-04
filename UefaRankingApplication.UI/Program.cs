@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System;
 using UefaRankingApplication.DataAccess.DbContexts;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,4 +30,22 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+CheckAndApplyMigrations();
+
 app.Run();
+
+void CheckAndApplyMigrations()
+{
+    // get all the existing services
+    using (var scope = app.Services.CreateScope())
+    {
+        // get for this action only the DbContext service
+        var _db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+        // if the systems finds any pending migration, then apply it and update DB
+        if (_db.Database.GetPendingMigrations().Count() > 0)
+        {
+            _db.Database.Migrate();
+        }
+    }
+}

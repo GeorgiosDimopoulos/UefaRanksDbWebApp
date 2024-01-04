@@ -22,21 +22,6 @@ namespace UefaRankingApplication.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MatchTeam", b =>
-                {
-                    b.Property<int>("MatchesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeamsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MatchesId", "TeamsId");
-
-                    b.HasIndex("TeamsId");
-
-                    b.ToTable("MatchTeam");
-                });
-
             modelBuilder.Entity("UefaRankingApplication.Data.Models.Country", b =>
                 {
                     b.Property<int>("Id")
@@ -72,6 +57,24 @@ namespace UefaRankingApplication.DataAccess.Migrations
                     b.ToTable("Country");
                 });
 
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.CountryTeamsMap", b =>
+                {
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UniqueConnectionValue")
+                        .HasColumnType("int");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("CountryTeamMap");
+                });
+
             modelBuilder.Entity("UefaRankingApplication.Data.Models.Match", b =>
                 {
                     b.Property<int>("Id")
@@ -81,15 +84,21 @@ namespace UefaRankingApplication.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Result")
+                    b.Property<string>("Result")
+                        .IsRequired()
                         .HasMaxLength(5)
-                        .HasColumnType("int")
+                        .HasColumnType("nvarchar(5)")
                         .HasColumnName("Result");
+
+                    b.Property<int?>("TeamId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Team_Id")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TeamId");
 
                     b.ToTable("Match");
                 });
@@ -114,6 +123,9 @@ namespace UefaRankingApplication.DataAccess.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("IsPlaying");
 
+                    b.Property<int?>("MatchId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -128,22 +140,35 @@ namespace UefaRankingApplication.DataAccess.Migrations
 
                     b.HasIndex("Country_Id");
 
+                    b.HasIndex("MatchId");
+
                     b.ToTable("Teams");
                 });
 
-            modelBuilder.Entity("MatchTeam", b =>
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.CountryTeamsMap", b =>
                 {
-                    b.HasOne("UefaRankingApplication.Data.Models.Match", null)
+                    b.HasOne("UefaRankingApplication.Data.Models.Country", "Country")
                         .WithMany()
-                        .HasForeignKey("MatchesId")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UefaRankingApplication.Data.Models.Team", null)
+                    b.HasOne("UefaRankingApplication.Data.Models.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamsId")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Country");
+
+                    b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.Match", b =>
+                {
+                    b.HasOne("UefaRankingApplication.Data.Models.Team", null)
+                        .WithMany("Matches")
+                        .HasForeignKey("TeamId");
                 });
 
             modelBuilder.Entity("UefaRankingApplication.Data.Models.Team", b =>
@@ -154,12 +179,26 @@ namespace UefaRankingApplication.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("UefaRankingApplication.Data.Models.Match", null)
+                        .WithMany("Teams")
+                        .HasForeignKey("MatchId");
+
                     b.Navigation("Country");
                 });
 
             modelBuilder.Entity("UefaRankingApplication.Data.Models.Country", b =>
                 {
                     b.Navigation("Teams");
+                });
+
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.Match", b =>
+                {
+                    b.Navigation("Teams");
+                });
+
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.Team", b =>
+                {
+                    b.Navigation("Matches");
                 });
 #pragma warning restore 612, 618
         }
