@@ -26,15 +26,6 @@ namespace UefaRankingApplication.Data.Models
         // ToDo: add it as new Column to the Database Table accordingly
         public List<Team> Teams { get; set; }
 
-        public Country()
-        {
-            ActiveTeamsNumber = 0;
-            AllTeamsNumber = 0;
-            RankingPosition = 0;
-            CountryPoints = 0;
-            Id = 0;
-            Teams = new List<Team>();
-            Name = string.Empty;
-        }
+        //public List<CountryTeamMap> CountryTeamsMapList { get; set; }
     }
 }
