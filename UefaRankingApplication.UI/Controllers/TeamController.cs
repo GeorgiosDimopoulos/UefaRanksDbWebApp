@@ -2,7 +2,7 @@
 using UefaRankingApplication.Data.Models;
 using UefaRankingApplication.DataAccess.DbContexts;
 
-namespace MvcWebExample_Web.Controllers
+namespace UefaRankingApplication.Web.Controllers
 {
     public class TeamController : Controller
     {

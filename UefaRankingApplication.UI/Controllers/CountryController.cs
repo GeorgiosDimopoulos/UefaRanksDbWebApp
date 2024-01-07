@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using UefaRankingApplication.Data.Models;
 using UefaRankingApplication.DataAccess.DbContexts;
 
-namespace MvcWebExample_Web.Controllers
+namespace UefaRankingApplication.Web.Controllers
 {
     public class CountryController : Controller
     {
@@ -19,7 +18,7 @@ namespace MvcWebExample_Web.Controllers
             List<Country> countries = _db.Countries.ToList();
             return View(countries);
         }
-
+                
         public IActionResult Upsert(int? id)
         {
             Country c = new();
@@ -39,7 +38,7 @@ namespace MvcWebExample_Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Upsert(Country country)
+        public async Task<IActionResult> Upsert([FromBody] Country country) // Country country
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +58,8 @@ namespace MvcWebExample_Web.Controllers
             return View(country);
         }
 
+        [Route("{id:int}")]
+        [Route("{id:int}")]
         public IActionResult Teams(int? cId)
         {
             Country c = new();
@@ -73,6 +74,7 @@ namespace MvcWebExample_Web.Controllers
             return View(c.Teams);
         }
 
+        // [Route("{id:int}")]
         public async Task<IActionResult> Delete(int cId)
         {
             Country c = new();

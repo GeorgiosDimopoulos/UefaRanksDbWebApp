@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace UefaRankingApplication.WebUI.Controllers
+namespace UefaRankingApplication.Web.Controllers
 {
     public class HomeController : Controller
     {
