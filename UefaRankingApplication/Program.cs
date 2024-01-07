@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UefaRankingApplication.DataAccess.DbContexts;
 
-namespace UefaRankingApplication.WebSwagger
+namespace UefaRankingApplication.API
 {
     public class Program
     {

@@ -35,6 +35,24 @@
             </div>
             <div class="form-group row py-2">
                 <div class="col-4">
+                    <label asp-for="AllTeamsNumber"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="AllTeamsNumber" class="form-control" />
+                    <span asp-validation-for="AllTeamsNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row py-2">
+                <div class="col-4">
+                    <label asp-for="AllTeamsNumber"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="AllTeamsNumber" class="form-control" />
+                    <span asp-validation-for="AllTeamsNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row py-2">
+                <div class="col-4">
                     <label asp-for="RankingPosition"></label>
                 </div>
                 <div class="col-8">
@@ -56,6 +74,9 @@
             </div>
             <div class="col-4">
                 <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+            </div>
+            <div class="col-4">
+                <a asp-action="Index" class="btn btn-danger form-control">Delete Country and Teams</a>
             </div>
         </div>
     </div>

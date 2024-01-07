@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UefaRankingApplication.Core\UefaRankingApplication.Data.csproj" />
-    <ProjectReference Include="..\UefaRankingApplication\UefaRankingApplication.WebSwagger.csproj" />
+    <ProjectReference Include="..\UefaRankingApplication\UefaRankingApplication.API.csproj" />
   </ItemGroup>
 
 </Project>
