@@ -38,7 +38,7 @@ namespace UefaRankingApplication.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Upsert([FromBody] Country country) // Country country
+        public async Task<IActionResult> Upsert([FromBody] Country country)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +58,6 @@ namespace UefaRankingApplication.Web.Controllers
             return View(country);
         }
 
-        [Route("{id:int}")]
-        [Route("{id:int}")]
         public IActionResult Teams(int? cId)
         {
             Country c = new();
@@ -74,7 +72,6 @@ namespace UefaRankingApplication.Web.Controllers
             return View(c.Teams);
         }
 
-        // [Route("{id:int}")]
         public async Task<IActionResult> Delete(int cId)
         {
             Country c = new();

@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Metrics;
 using UefaRankingApplication.Data.Models;
 using UefaRankingApplication.DataAccess.DbContexts;
 
-namespace UefaRankingApplication.WebSwagger.Controllers
+namespace UefaRankingApplication.API.Controllers
 {
     public class TeamsController : Controller
     {
@@ -74,26 +75,29 @@ namespace UefaRankingApplication.WebSwagger.Controllers
         }
 
         [HttpPost("AddNewTeam")]
-        public async Task<ActionResult<Team>> AddTeam(string teamName, string country)
+        public async Task<ActionResult<Team>> AddNewTeam([FromBody] Team team) // string teamName, string country
         {
-            _db.Teams.Add(new Team()
-            {
-                Name = teamName,
-                Country = _db.Countries.First(c => c.Name.Equals(country)),
-                GroupPoints = 0                
-            });
+            //_db.Teams.Add(new Team()
+            //{
+            //    Name = teamName,
+            //    Country = _db.Countries.First(c => c.Name.Equals(country)),
+            //    GroupPoints = 0                
+            //});
+            _db.Teams.Add(team);
+
             await _db.SaveChangesAsync();
 
             return Ok();
         }
 
         [HttpPut("AddPointsToExistingTeam")]
-        public async Task<ActionResult<Team>> AddPointsToTeam(string name, string matchPoints)
+        public async Task<ActionResult<Team>> UpdateTeam([FromBody] Team team)
         {
-            _db.Teams.FirstOrDefault(t => t.Name.Equals(name)).GroupPoints += int.Parse(matchPoints);            
+            // _db.Teams.FirstOrDefault(t => t.Name.Equals(name)).GroupPoints += int.Parse(matchPoints);            
+            _db.Teams.Update(team);
             await _db.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(Team), new { Id = 1 }, name);
+            return CreatedAtAction(nameof(Team), new { Id = 1 }, team.Name);
 
             // if (await _countriesService.UpdateTeamPoints(name, matchPoints))
             // {

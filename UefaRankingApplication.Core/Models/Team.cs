@@ -31,12 +31,8 @@ namespace UefaRankingApplication.Data.Models
         public Country Country { get; set; }
 
         [NotMapped]
-        public List<Match>? Matches { get; set; }
-
-        [NotMapped]
         public IEnumerable<SelectListItem>? CountryList { get; set; }
 
-        // public List<TeamMatchesMap> TeamMatchesMap { get; set; }
         //public List<CountryTeamMap> CountryTeamsMapList { get; set; }
     }
 

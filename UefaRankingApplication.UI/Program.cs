@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using System;
 using UefaRankingApplication.DataAccess.DbContexts;
 
 var builder = WebApplication.CreateBuilder(args);
