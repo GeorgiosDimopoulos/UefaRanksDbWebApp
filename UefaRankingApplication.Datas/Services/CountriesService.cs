@@ -139,11 +139,11 @@ namespace UefaRankingApplication.DataAccess.Services
 
             if (resultType.Equals("win") || int.Parse(resultType) == 3)
             {
-                await UpdateCountryPoints(team.Country.Name, "2000");
+                await UpdateCountryPoints(team.Country.Name, ResultRankingPoints.Win.ToString());
             }
             else if (resultType.Equals("draw") || int.Parse(resultType) == 1)                              
             {
-                await UpdateCountryPoints(team.Country.Name, "1000");
+                await UpdateCountryPoints(team.Country.Name, ResultRankingPoints.Draw.ToString());
             }
 
             return await Task.FromResult(true);                            

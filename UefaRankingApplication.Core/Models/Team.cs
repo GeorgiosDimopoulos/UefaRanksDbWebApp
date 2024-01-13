@@ -44,6 +44,13 @@ namespace UefaRankingApplication.Data.Models
         None
     }
 
+    public enum ResultRankingPoints
+    {
+        Win = 2000,
+        Draw = 1000,
+        Loss = 0,
+    }
+
     //public enum TeamResultType_Char
     //{
     //    None = 0,
