@@ -1,18 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics.Metrics;
 using UefaRankingApplication.Data.Models;
 using UefaRankingApplication.DataAccess.DbContexts;
 
 namespace UefaRankingApplication.API.Controllers
 {
-    public class TeamsController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TeamAPIController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
         
         // private readonly ICountriesService _countriesService;
-        private readonly ILogger<TeamsController> _logger;
+        private readonly ILogger<TeamAPIController> _logger;
 
-        public TeamsController(ILogger<TeamsController> logger, ApplicationDbContext applicationDbContext) // , CountriesService countriesService
+        public TeamAPIController(ILogger<TeamAPIController> logger, ApplicationDbContext applicationDbContext) // , CountriesService countriesService
         {
             _logger = logger;
             _db = applicationDbContext;

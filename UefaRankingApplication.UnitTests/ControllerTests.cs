@@ -7,10 +7,10 @@ namespace UefaRankingApplication.UnitTests
     public class ControllerTests
     {
         // private readonly CountriesController _countriesController;
-        private readonly ILogger<CountriesController> _logger;
+        private readonly ILogger<CountryAPIController> _logger;
         private readonly IFixture fixture;
 
-        public ControllerTests(ILogger<CountriesController> logger)
+        public ControllerTests(ILogger<CountryAPIController> logger)
         {
             _logger = logger;
             fixture = new Fixture();            

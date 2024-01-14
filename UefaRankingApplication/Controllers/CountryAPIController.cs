@@ -1,30 +1,32 @@
 using Microsoft.AspNetCore.Mvc;
 using UefaRankingApplication.Data.Models;
 using UefaRankingApplication.DataAccess.DbContexts;
+using UefaRankingApplication.DataAccess.Services;
 
 namespace UefaRankingApplication.API.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class CountriesController : ControllerBase
+    public class CountryAPIController : ControllerBase
     {
-        private readonly ILogger<CountriesController> _logger;
+        private readonly ILogger<CountryAPIController> _logger;
         
-        // private readonly ICountriesService _countriesService;
+        private readonly ICountriesService _countriesService;
         private readonly ApplicationDbContext _db;
 
-        public CountriesController(ILogger<CountriesController> logger, ApplicationDbContext applicationDbContext) // ICountriesService countriesService
+        public CountryAPIController(ILogger<CountryAPIController> logger, ApplicationDbContext applicationDbContext, ICountriesService countriesService)
         {
             _logger = logger;
             _db = applicationDbContext;
+            _countriesService = countriesService;
         }
 
         [HttpGet("AllCountriesInfo")]
         public IEnumerable<Country> GetAllCountries()
         {
             _logger.LogInformation("Getting Countries Information");
-
-            // return _countriesService.GetCountries().ToList();
+            
+            // _countriesService.GetCountries().ToList();
             return _db.Countries.ToList();
         }
 
@@ -33,7 +35,7 @@ namespace UefaRankingApplication.API.Controllers
         {
             _logger.LogInformation("Getting Countries Names");
 
-            // return _countriesService.GetCountries().Select(t => t.Name).ToList();
+            // _countriesService.GetCountries().Select(t => t.Name).ToList();
             return _db.Countries.Select(t => t.Name);            
         }
 
@@ -42,7 +44,7 @@ namespace UefaRankingApplication.API.Controllers
         {
             _logger.LogInformation("Getting Country Info by given name");
 
-            // return _countriesService.GetCountries().First(c => c.Name.Equals(name));
+            // _countriesService.GetCountries().First(c => c.Name.Equals(name));
             return _db.Countries.First(c => c.Name.Equals(name));            
         }
 
@@ -50,21 +52,20 @@ namespace UefaRankingApplication.API.Controllers
         public async Task<ActionResult<Team>> AddNewCountry([FromBody] Country country)
         {
             _db.Countries.Add(country);
-
             await _db.SaveChangesAsync();
-
             return Ok();
         }
 
-        [HttpPut("UpdateCountryInfo")]
-        public Country UpdateCountryInfo([FromBody] Country country)
+        [HttpPut("UpdateCountryPoints")]
+        public Country UpdateCountryPoints(string countryName, string points)
         {
-            _logger.LogInformation("Getting Country Info by given info for updating");
-            _db.Countries.Update(country);
+            _logger.LogInformation("Getting Country name for updating its ranking points");
+            var updatedCountry = _db.Countries.First(c => c.Name.Equals(countryName));
+            updatedCountry.CountryPoints = int.Parse(points);
+            _db.Countries.Update(updatedCountry);
             _db.SaveChanges();
 
-            // return _countriesService.GetCountries().First(c => c.Name.Equals(name));
-            return country;
+            return updatedCountry;
         }
 
         [HttpDelete("RemoveCountryById")]
@@ -80,7 +81,7 @@ namespace UefaRankingApplication.API.Controllers
         [HttpDelete("RemoveCountryByName")]
         public async Task<ActionResult<Country>> RemoveCountryByName(string countryName)
         {
-            // await _countriesService.DeleteCountry(countryName)
+            // _countriesService.DeleteCountry(countryName);
             var country = _db.Countries.FirstOrDefault(c => c.Name.Equals(countryName));
             _db.Countries.Remove(country);
             _db.SaveChangesAsync();
