@@ -5,7 +5,6 @@ namespace UefaRankingApplication.Data.Models
     [Table(name: "Country")]
     public class Country
     {
-        // [Key]
         public int Id { get; set; }
 
         [Column(name: "Name")]

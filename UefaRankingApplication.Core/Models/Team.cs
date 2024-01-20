@@ -25,13 +25,14 @@ namespace UefaRankingApplication.Data.Models
         [NotMapped]
         public TeamCup? PlayingCup { get; set; }
 
-        // [ForeignKey("CountryId")]
         public int Country_Id { get; set; }
 
         public Country Country { get; set; }
 
-        [NotMapped]
-        public IEnumerable<SelectListItem>? CountryList { get; set; }
+        // [NotMapped]
+        // public IEnumerable<SelectListItem>? CountryList { get; set; }
+
+        public IEnumerable<Match>? Matches { get; set; }
 
         //public List<CountryTeamMap> CountryTeamsMapList { get; set; }
     }
