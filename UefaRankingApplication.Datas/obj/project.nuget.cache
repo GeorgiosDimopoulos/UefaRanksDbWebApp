@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jgaCSJwMpWQvWG4ITL3AEJs5krFVR+Z08bzD/PwaokDQ9lehnfOcadxc5v8zwIInK6E5W22/yjgKBUIWTHxkTQ==",
+  "dgSpecHash": "BYQcHOu9kqde1mySgWdjibj8uFQlEOK6H/A4yWW8/4nogDorwhsjSjSv/dyTlQfO862jpASrNE+cYP7cZaKBhw==",
   "success": true,
   "projectFilePath": "C:\\Users\\georg\\source\\repos\\UefaRankingApplication\\UefaRankingApplication.Datas\\UefaRankingApplication.DataAccess.csproj",
   "expectedPackageFiles": [
@@ -117,7 +117,7 @@
     "C:\\Users\\georg\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\georg\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.1\\system.configuration.configurationmanager.6.0.1.nupkg.sha512",
     "C:\\Users\\georg\\.nuget\\packages\\system.console\\4.3.0\\system.console.4.3.0.nupkg.sha512",
-    "C:\\Users\\georg\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512",
+    "C:\\Users\\georg\\.nuget\\packages\\system.data.sqlclient\\4.8.6\\system.data.sqlclient.4.8.6.nupkg.sha512",
     "C:\\Users\\georg\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\georg\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\georg\\.nuget\\packages\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",

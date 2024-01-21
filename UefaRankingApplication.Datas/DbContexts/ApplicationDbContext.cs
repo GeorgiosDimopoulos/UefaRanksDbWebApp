@@ -21,21 +21,40 @@ namespace UefaRankingApplication.DataAccess.DbContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
-            modelBuilder.Entity<Country>().HasKey(c => c.Id);
-            modelBuilder.Entity<Country>().Property(c => c.RankingPosition).IsRequired();            
-            modelBuilder.Entity<Country>().Property(c => c.AllTeamsNumber).IsRequired();           
-            modelBuilder.Entity<Country>().Property(c => c.CountryPoints).IsRequired();
-            modelBuilder.Entity<Country>().Property(c => c.Name).HasMaxLength(20).IsRequired();
 
-            modelBuilder.Entity<Team>().HasKey(t => t.Id);
-            modelBuilder.Entity<Team>().Property(t => t.Name).HasMaxLength(20).IsRequired();
-            modelBuilder.Entity<Team>().HasOne(t => t.Country).WithMany(c => c.Teams).HasForeignKey(t => t.Country_Id);                      
+            OnCountryModelCreating(modelBuilder);
+            OnTeamModelCreating(modelBuilder);
+            OnMatchModelCreating(modelBuilder);
+            OnModelsRulesCreating(modelBuilder);                                    
+        }
 
+        private void OnMatchModelCreating(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Match>().HasKey(m => m.Id);
             modelBuilder.Entity<Match>().Property(m => m.Team1).IsRequired();
             modelBuilder.Entity<Match>().Property(m => m.Team2).IsRequired();
-            // modelBuilder.Entity<Match>().Property(m => m.PlayingCup).IsRequired();
+        }
+
+        private void OnCountryModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Country>().HasKey(c => c.Id);
+            modelBuilder.Entity<Country>().Property(c => c.RankingPosition).IsRequired();
+            modelBuilder.Entity<Country>().Property(c => c.AllTeamsNumber).IsRequired();
+            modelBuilder.Entity<Country>().Property(c => c.CountryPoints).IsRequired();
+            modelBuilder.Entity<Country>().Property(c => c.Name).HasMaxLength(20).IsRequired();
+        }
+
+        private void OnTeamModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Team>().HasKey(t => t.Id);
+            modelBuilder.Entity<Team>().Property(t => t.Name).HasMaxLength(20).IsRequired();
+            modelBuilder.Entity<Team>().HasOne(t => t.Country).WithMany(c => c.Teams).HasForeignKey(t => t.Country_Id);
+        }
+
+        private void OnModelsRulesCreating(ModelBuilder modelBuilder)
+        {
+            // modelBuilder.Entity<Match>().HasOne(m => m.Team1).WithMany(t => t.Matches).HasForeignKey(m => m.Team1Id);
+            // modelBuilder.Entity<Match>().HasOne(m => m.Team2).WithMany(t => t.Matches).HasForeignKey(m => m.Team2Id);
         }
 
         // METHOD THAT SHOULD BE USED ONLY FOR MIGRATIONS WITH THE DB CONNECTION

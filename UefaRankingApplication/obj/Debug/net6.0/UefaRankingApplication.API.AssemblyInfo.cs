@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UefaRankingApplication.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e73065eb09e623cfc2a44d5df5b436438493fd9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("UefaRankingApplication.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UefaRankingApplication.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
