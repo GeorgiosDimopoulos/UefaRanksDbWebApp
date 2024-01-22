@@ -57,6 +57,40 @@ namespace UefaRankingApplication.DataAccess.Migrations
                     b.ToTable("Country");
                 });
 
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.Match", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("PlayingCup")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Result")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Round")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Team1Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Team2Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Team1Id");
+
+                    b.HasIndex("Team2Id");
+
+                    b.ToTable("Matches");
+                });
+
             modelBuilder.Entity("UefaRankingApplication.Data.Models.Team", b =>
                 {
                     b.Property<int>("Id")
@@ -92,6 +126,25 @@ namespace UefaRankingApplication.DataAccess.Migrations
                     b.HasIndex("Country_Id");
 
                     b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("UefaRankingApplication.Data.Models.Match", b =>
+                {
+                    b.HasOne("UefaRankingApplication.Data.Models.Team", "Team1")
+                        .WithMany()
+                        .HasForeignKey("Team1Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UefaRankingApplication.Data.Models.Team", "Team2")
+                        .WithMany()
+                        .HasForeignKey("Team2Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Team1");
+
+                    b.Navigation("Team2");
                 });
 
             modelBuilder.Entity("UefaRankingApplication.Data.Models.Team", b =>

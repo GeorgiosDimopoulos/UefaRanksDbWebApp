@@ -53,8 +53,10 @@ namespace UefaRankingApplication.DataAccess.DbContexts
 
         private void OnModelsRulesCreating(ModelBuilder modelBuilder)
         {
-            // modelBuilder.Entity<Match>().HasOne(m => m.Team1).WithMany(t => t.Matches).HasForeignKey(m => m.Team1Id);
-            // modelBuilder.Entity<Match>().HasOne(m => m.Team2).WithMany(t => t.Matches).HasForeignKey(m => m.Team2Id);
+            modelBuilder.Entity<Match>().HasOne(m => m.Team1).WithMany(t => t.Matches).HasForeignKey(m => m.Team1Id);
+            modelBuilder.Entity<Match>().HasOne(m => m.Team2).WithMany(t => t.Matches).HasForeignKey(m => m.Team2Id);
+
+            modelBuilder.Entity<Team>().HasOne(t => t.Country).WithMany(c => c.Teams).HasForeignKey(t => t.Country_Id);
         }
 
         // METHOD THAT SHOULD BE USED ONLY FOR MIGRATIONS WITH THE DB CONNECTION
