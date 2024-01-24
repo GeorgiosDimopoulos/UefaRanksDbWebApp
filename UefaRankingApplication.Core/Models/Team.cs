@@ -27,13 +27,12 @@ namespace UefaRankingApplication.Data.Models
 
         public int Country_Id { get; set; }
 
-        public Country Country { get; set; }
+        public Country Country { get; set; }       
+
+        public List<Match> Matches { get; } // set;
 
         // [NotMapped]
         // public IEnumerable<SelectListItem>? CountryList { get; set; }
-
-        public IEnumerable<Match>? Matches { get; set; }
-
         //public List<CountryTeamMap> CountryTeamsMapList { get; set; }
     }
 
