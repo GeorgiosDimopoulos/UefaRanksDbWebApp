@@ -1,0 +1,25 @@
+﻿<Window x:Class="UefaRankingApplication.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UefaRankingApplication.Wpf"
+        mc:Ignorable="d"
+        Title="UEFA Ranking App" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Height="450" Width="800">
+    <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="10"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="10"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="10"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="10"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="10"/>
+		</Grid.RowDefinitions>
+		<Button x:Name="TeamsRanking" Click="TeamsRanking_Click" Content="Teams Ranking" Grid.Column="1" Grid.Row="1" Background="BlueViolet"/>
+		<Button x:Name="CountriesRanking" Click="CountriesRanking_Click" Content="Countries Ranking" Grid.Column="3" Grid.Row="1" Background="CadetBlue"/>
+	</Grid>
+</Window>
