@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace UefaRankingApplication.Data.Models
 {
-    // [Table(name: "Team")]
+    [Table(name: "Team")]
     public class Team
     {
         // [Key]
@@ -29,7 +28,7 @@ namespace UefaRankingApplication.Data.Models
 
         public Country Country { get; set; }       
 
-        public List<Match> Matches { get; } // set;
+        public List<Match> Matches { get; set; }
 
         // [NotMapped]
         // public IEnumerable<SelectListItem>? CountryList { get; set; }

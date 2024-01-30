@@ -21,13 +21,33 @@
                     <th>
                         Team Name
                     </th>
-                    <th></th>
+                    <th>
+                        Country Id
+                    </th>
+                    <th>
+                        Ranking Position
+                    </th>
+                    <th>
+                        Cup Name
+                    </th>
+                    <th>
+                        Options
+                    </th>
                 </tr>
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td>
                             @item.Name
+                        </td>
+                        <td>
+                            @item.Country_Id
+                        </td>
+                        <td>
+                            @item.RankingPoints
+                        </td>
+                        <td>
+                            @item.PlayingCup
                         </td>
                         <td>
                             <a class="btn btn-primary text-white" asp-action="Upsert" asp-route-Id="@item.Id">

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.FileSystemGlobbing;
 using UefaRankingApplication.Data.Models;
 using UefaRankingApplication.DataAccess.DbContexts;
 
@@ -38,7 +37,8 @@ namespace UefaRankingApplication.API.Controllers
         public IEnumerable<Match> GetMatchesByTeam(string teamName)
         {
             _logger.LogInformation($"Getting all Matches Information by {teamName} cup!");
-            return _db.Matches.Where(m => m.Team1.Name.Equals(teamName));            
+            var team = _db.Teams.FirstOrDefault(m => m.Name.Equals(teamName));
+            return _db.Matches.Where(m => m.Teams.Contains(team));
         }
 
         [HttpGet("GetMatchesByCountry")]
@@ -49,7 +49,7 @@ namespace UefaRankingApplication.API.Controllers
         }
 
         [HttpPost("AddNewMatch")]
-        public async Task<ActionResult<Match>> AddNewMatch([FromBody]Match match)
+        public async Task<ActionResult<Match>> AddNewMatch([FromBody] Match match)
         {
             _db.Matches.Add(match);
 
